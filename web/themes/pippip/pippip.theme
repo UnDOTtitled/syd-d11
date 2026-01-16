@@ -1,0 +1,138 @@
+<?php
+
+use Drupal\Core\Url;
+use Drupal\Component\Utility\Html;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteObjectInterface;
+
+/**
+ * Hook_preprocess_html()
+ */
+function pippip_preprocess_html(&$variables) {
+  $view_id = \Drupal::routeMatch()->getParameter('view_id');
+  if ($view_id) {
+    $variables['view_id'] = Html::cleanCssIdentifier($view_id);
+	}
+	
+	// Add top level nav path to body classes
+	$current_path = \Drupal::service('path.current')->getPath();
+  $path_alias = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+	$path_alias = explode('/' , $path_alias);
+	$variables['attributes']['class'][] = \Drupal\Component\Utility\Html::cleanCssIdentifier($path_alias[1]);
+}
+
+/**
+ * Implements hook_preprocess_field().
+ * 
+ * Output raw HTML in embed field to allow embeds to run
+ */
+function pippip_preprocess_field(&$variables, $hook) {
+  switch ($variables['element']['#field_name']) {
+	case 'field_embed':
+	  $variables['embedded'] = $variables['items'][0]['content']['#context']['value'];
+	  break;
+  }
+}
+
+/**
+ * Hook_preprocess_webform()
+ *
+ * Create title var to get webform title
+ */
+function pippip_preprocess_webform(&$vars){
+  $wfid = $vars["element"]["#webform_id"];
+  $wf = \Drupal\webform\Entity\Webform::load($wfid);
+  $vars["title"] = $wf->label();
+}
+
+/**
+ * Hook_theme_suggestions_field_alter()
+ *
+ * Add field level display mode theme override
+ */
+function pippip_theme_suggestions_field_alter(&$suggestions, $variables) {
+  $suggestions[] = 'field__node__' . $variables['element']['#field_name'] . '__' . $variables['element']['#bundle'] . '__' . $variables['element']['#view_mode'];
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for form templates.
+ * @param array $suggestions
+ * @param array $variables
+ */
+function pippip_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  // Block suggestions for custom block bundles.
+  if (isset($variables['elements']['content']['#block_content'])) {
+    array_splice($suggestions, 1, 0, 'block__bundle__' . $variables['elements']['content']['#block_content']->bundle());
+  }
+}
+
+/**
+ * @param $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ * @param $form_id
+ * 
+ * Set custom submit/reset button templates
+ */
+function pippip_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['actions']['submit']['#attributes']['data-twig-suggestion'] = 'search_results_submit';
+  $form['actions']['submit']['#attributes']['class'][] = 'a-btn';
+  if (isset($form['actions']['submit']['#value'])) {
+    $form['actions']['submit']['#attributes']['value'][] = $form['actions']['submit']['#value'];
+  }
+
+  $form['actions']['reset']['#attributes']['data-twig-suggestion'] = 'search_results_submit';
+  $form['actions']['reset']['#attributes']['class'][] = 'a-btn';
+  if (isset($form['actions']['reset']) && isset($form['actions']['reset']['#value'])) {
+    $form['actions']['reset']['#attributes']['value'][] = $form['actions']['reset']['#value'];
+  }
+}
+
+/*
+ * Implements hook_preprocess_page()
+ */
+function pippip_preprocess_page__search(&$variables) {
+  // Use this as a title in page--search.html.twig
+  $variables['search_term'] = Drupal::request()->query->get('for');
+}
+
+/**
+ * Hook_preprocess_node()
+ * 
+ * Subnav & title
+ */
+function pippip_preprocess_node(&$variables) {
+  $node = $variables['node'];
+  $menu_link_manager = \Drupal::service('plugin.manager.menu.link');
+  $menuArr = $menu_link_manager->loadLinksByRoute('entity.node.canonical', array('node' => $node->id()));
+
+  foreach($menuArr as $menu) {
+    if ($menu->getMenuName() == "main") {
+      if ($menu->getParent()) {
+        $parents = $menu_link_manager->getParentIds($menu->getParent());
+        $parent = reset(array_reverse($parents));
+        $title = $menu_link_manager->createInstance($parent)->getTitle();
+        $definition = $menu_link_manager->createInstance($parent)->getPluginDefinition();
+        $nid = $definition['route_parameters']['node'];
+        $variables['nav_parent_title'] = $title;
+        $variables['nav_parent'] = $nid;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_breadcrumb().
+ */
+function pippip_preprocess_breadcrumb(&$variables) {
+  // We are creating a variable for the Current Page Title, to allow us to print
+  // it after the breadcrumbs loop has run.
+  $request = \Drupal::request();
+  if ($route = $request->attributes->get(RouteObjectInterface::ROUTE_OBJECT)) {
+    $variables['current_page_title'] = \Drupal::service('title_resolver')->getTitle($request, $route);
+  }
+  // Since we are printing the 'Current Page Title', we don't cache breadcrumbs.
+  // If we do, then we might end up with something like Home >> Articles on the
+  // Recipes page, which should read Home >> Recipes.
+  $variables['#cache']['contexts'][] = 'url';
+}

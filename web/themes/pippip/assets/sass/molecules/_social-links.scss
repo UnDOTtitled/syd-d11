@@ -1,0 +1,55 @@
+/**
+ * ----------------------
+ * Un.titled
+ * Molecules - Social links
+ * ----------------------
+ */
+
+/**
+ * Styling
+ */
+.m-social-links {
+  display: flex;
+  align-items: center;
+  margin-top: calc(var(--bump) / 3);
+
+  @include media('<md') {
+    justify-content: center;
+  }
+
+  &__link {
+    margin-right: calc(var(--bump) / 2);
+    height: calc(var(--bump) * 1.25);
+    width: calc(var(--bump) * 1.25);
+    border-radius: 50%;
+    display: block;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    rect {
+      transition: 0.1s var(--easing);
+      fill: var(--c-primary);
+    }
+
+    path {
+      fill: var(--c-white);
+    }
+
+    &:hover {
+      rect {
+        fill: var(--c-white);
+      }
+      path {
+        fill: var(--c-primary);
+      }
+    }
+  }
+}

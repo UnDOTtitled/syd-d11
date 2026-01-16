@@ -1,0 +1,20 @@
+uuid: 5a31495e-563d-44dd-ae75-96ce7f766b46
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+_core:
+  default_config_hash: gI17skUX_aoKMO4OAr6OCcvKRnbWI4WR-Nxw8YVlEdY
+name: Homepage
+type: homepage
+description: null
+help: null
+new_revision: true
+preview_mode: 0
+display_submitted: false

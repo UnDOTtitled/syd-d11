@@ -1,0 +1,25 @@
+uuid: 9760a7d8-f758-4505-a8e6-78e319715370
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.extra_content.text
+    - field.storage.extra_content.field_display_title
+_core:
+  default_config_hash: 2ueP4ITGIyeAVVITonB0UmL-_kPtxLOyXh_JSLZI5Ak
+id: extra_content.text.field_display_title
+field_name: field_display_title
+entity_type: extra_content
+bundle: text
+label: 'Display title?'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

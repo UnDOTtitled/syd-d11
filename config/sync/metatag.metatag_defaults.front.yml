@@ -1,0 +1,14 @@
+uuid: e70f816e-3aec-48ae-8407-28bf5fbe5b93
+langcode: en
+status: false
+dependencies: {  }
+_core:
+  default_config_hash: tS_lX1V4iWWYBXKSDMj9NiVqvSennGQxyBwFhq-oyzw
+id: front
+label: 'Front page'
+tags:
+  shortlink: '[site:url]'
+  image_src: '[node:field_image]'
+  canonical_url: '[site:url]'
+  og_image: '[node:field_image]'
+  twitter_cards_image: '[node:field_image]'

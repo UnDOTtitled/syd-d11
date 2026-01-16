@@ -1,0 +1,43 @@
+uuid: f4bd254c-21b9-4878-a4b8-49bb85b1811b
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.extra_content.linked_logos
+    - field.field.extra_content.linked_logos.field_display_title
+    - field.field.extra_content.linked_logos.field_logos
+_core:
+  default_config_hash: ssszImCR8Ux8q-fZtFJCB6BOKlUOT1DvslG2PH6I800
+id: extra_content.linked_logos.default
+targetEntityType: extra_content
+bundle: linked_logos
+mode: default
+content:
+  field_display_title:
+    type: boolean
+    label: hidden
+    settings:
+      format: boolean
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_logos:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+      "jsx": "react",
+      "module": "commonjs",
+      "noImplicitAny": true,
+      "preserveConstEnums": true,
+      "removeComments": true,
+      "sourceMap": true,
+      "target": "es5",
+      "esModuleInterop": true,
+      "allowJs": true,
+      "outDir": "./web/themes/pippip/dist"
+    },
+    "files": ["./web/themes/pippip/assets/types/index.d.ts"],
+    "include": [
+      "./web/themes/pippip/assets/js/**/*.ts",
+      "./web/themes/pippip/assets/js/**/*.tsx",
+      "web/themes/pippip/assets/js/classes/SlickSlider.ts"    ],
+    "exclude": ["node_modules", "./web/themes/pippip/dist", "./*.js"]
+  }

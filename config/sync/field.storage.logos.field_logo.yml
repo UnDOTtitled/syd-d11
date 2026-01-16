@@ -1,0 +1,20 @@
+uuid: 33ddea05-cbf2-4256-b8d7-d57f05ab7a97
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+    - media
+id: logos.field_logo
+field_name: field_logo
+entity_type: logos
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

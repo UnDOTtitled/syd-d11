@@ -1,0 +1,23 @@
+uuid: 98b406b8-f8bc-464e-8c10-6c6971d4b43f
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+_core:
+  default_config_hash: 2DvnDPtoh8u4Yk2kySx_WvLWvjlKl-bA7pe4OZ53YqQ
+id: extra_content.field_quote_credit
+field_name: field_quote_credit
+entity_type: extra_content
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

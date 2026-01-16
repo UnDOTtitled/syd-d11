@@ -1,0 +1,11 @@
+uuid: b7bfc037-0057-469e-aa91-b01f50f798cc
+langcode: en
+status: true
+dependencies: {  }
+id: social_links
+label: 'Social links'
+uid: false
+created: false
+changed: false
+title: true
+standalone_url: null

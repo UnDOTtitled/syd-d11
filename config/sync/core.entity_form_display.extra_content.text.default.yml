@@ -1,0 +1,48 @@
+uuid: 64de4d8b-fe95-4508-85f4-1fd9eae0d325
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.extra_content.text
+    - field.field.extra_content.text.field_copy
+    - field.field.extra_content.text.field_display_title
+  module:
+    - text
+_core:
+  default_config_hash: jB_D-gCsHGejR-_6Vdi66fsqGPcDh7ipUNZOPGuFowg
+id: extra_content.text.default
+targetEntityType: extra_content
+bundle: text
+mode: default
+content:
+  field_copy:
+    type: text_textarea
+    weight: 3
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_display_title:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 100
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

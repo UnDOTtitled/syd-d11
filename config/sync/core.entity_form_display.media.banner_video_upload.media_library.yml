@@ -1,0 +1,27 @@
+uuid: 552187b2-fde0-44a2-a8cd-7b91eecf6e2f
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_library
+    - field.field.media.banner_video_upload.field_media_video_file
+    - media.type.banner_video_upload
+id: media.banner_video_upload.media_library
+targetEntityType: media
+bundle: banner_video_upload
+mode: media_library
+content:
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_media_video_file: true
+  path: true
+  status: true
+  uid: true

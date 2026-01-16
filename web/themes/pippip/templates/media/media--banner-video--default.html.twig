@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Theme override to display a media item.
+ *
+ * Available variables:
+ * - name: Name of the media.
+ * - content: Media content.
+ *
+ * @see template_preprocess_media()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+    set classes = [
+    'media',
+    'media--type-' ~ media.bundle()|clean_class,
+    not media.isPublished() ? 'media--unpublished',
+    view_mode ? 'media--view-mode-' ~ view_mode|clean_class,
+]
+%}
+
+{% if content %}
+    <div class="desktop-slider-slide">
+        {% if 'vimeo' in content.field_media_oembed_video_1[0]['#context']['value'] %}
+
+            {% set url = content.field_media_oembed_video_1[0]['#context']['value'] %}
+            {% set newurl = url|replace({'watch?v=': "embed/"}) %}
+            <div class="a-media">
+                <iframe src="{{ newurl }}?autoplay=1&controls=0&&showinfo=0&loop=1&mute=1&rel=1" frameborder="0" tabindex="-1"></iframe>
+            </div>
+
+        {% elseif 'youtube' in content.field_media_oembed_video_1[0]['#context']['value'] %}
+
+            {% set url = content.field_media_oembed_video_1[0]['#context']['value'] %}
+            {% set videoId = url|split('v=')|last %}
+            <div class="a-media">
+                <div id="ytplayer" data-videoId="{{ videoId }}"></div>
+            </div>
+
+        {% endif %}
+    </div>
+{% endif %}

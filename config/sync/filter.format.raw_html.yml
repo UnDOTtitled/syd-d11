@@ -1,0 +1,10 @@
+uuid: 6a5362e2-1441-4964-a2ad-6011a59de269
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: TzYl5RjEF4-QIEJLH81oedfxO07MWq-__ZmICvOHNks
+name: 'Raw HTML'
+format: raw_html
+weight: 0
+filters: {  }

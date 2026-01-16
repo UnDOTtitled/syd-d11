@@ -1,0 +1,25 @@
+uuid: 557c6a72-730c-49a1-945a-4bdd94b64e73
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.logos.logos_list
+    - field.storage.logos.field_logo_link
+  module:
+    - link
+_core:
+  default_config_hash: 5LGhtp2UncDQtcNjyogeW3wjlPNlaFFNrbyoEIJi6MM
+id: logos.logos_list.field_logo_link
+field_name: field_logo_link
+entity_type: logos
+bundle: logos_list
+label: Link
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 0
+  link_type: 16
+field_type: link

@@ -1,0 +1,32 @@
+uuid: 6f040860-418c-4d73-9295-eb2296748227
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.media_library
+    - field.field.media.attachments.field_media_audio_file
+    - image.style.medium
+    - media.type.attachments
+  module:
+    - image
+id: media.attachments.media_library
+targetEntityType: media
+bundle: attachments
+mode: media_library
+content:
+  thumbnail:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: medium
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  field_media_audio_file: true
+  name: true
+  uid: true

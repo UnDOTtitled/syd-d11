@@ -1,0 +1,16 @@
+uuid: 66f4d53f-07d4-4aef-a0eb-602d8b83954f
+langcode: en
+status: true
+dependencies: {  }
+name: gallery
+label: Gallery
+effects:
+  9ead6d4b-4b1b-4ce0-9952-8aaaf675f3f4:
+    uuid: 9ead6d4b-4b1b-4ce0-9952-8aaaf675f3f4
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 500
+      height: 500
+      anchor: center-center
+pipeline: __default__

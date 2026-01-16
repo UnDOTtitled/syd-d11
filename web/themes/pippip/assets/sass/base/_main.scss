@@ -1,0 +1,29 @@
+/**
+ * ----------------------
+ * Un.titled
+ * Base - Main
+ * ----------------------
+ */
+
+/**
+ * Styles
+ */
+html,
+body {
+  @include font-smoothing(true);
+  font-size: var(--fontSize);
+  box-sizing: border-box;
+  line-height: var(--lineHeight);
+  font-family: var(--fontBody);
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}

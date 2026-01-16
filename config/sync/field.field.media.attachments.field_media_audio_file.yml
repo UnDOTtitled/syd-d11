@@ -1,0 +1,27 @@
+uuid: bbc6a196-ff92-42c1-b8d7-0a573ce45b41
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_media_audio_file
+    - media.type.attachments
+  module:
+    - file
+id: media.attachments.field_media_audio_file
+field_name: field_media_audio_file
+entity_type: media
+bundle: attachments
+label: File
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: attachments
+  file_extensions: 'txt doc docx pdf'
+  max_filesize: '10 MB'
+  description_field: false
+field_type: file

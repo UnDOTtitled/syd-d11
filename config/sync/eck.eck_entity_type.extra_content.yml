@@ -1,0 +1,13 @@
+uuid: 2ed87640-23a1-4958-9727-b23734bb77fb
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: pZoOhs7b-ztZzHywjOcTKaQkik3BVhpnywq56oQBH9s
+id: extra_content
+label: 'Extra content'
+uid: false
+created: false
+changed: false
+title: true
+standalone_url: null

@@ -1,0 +1,22 @@
+uuid: 1a49b555-5ea8-4b0a-9727-b4574229c4ce
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - pippip
+_core:
+  default_config_hash: iIy-YIc9d9s1isAtTIKWDBKd6kd2r6LxoYz_-hkLJco
+id: pippip_messages
+theme: pippip
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }

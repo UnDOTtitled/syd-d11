@@ -1,0 +1,33 @@
+uuid: cb3dfabc-ca66-400c-b727-a020aff76412
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_banner_image
+    - media.type.banner_image
+    - media.type.banner_video
+    - media.type.banner_video_upload
+    - node.type.homepage
+id: node.homepage.field_banner_image
+field_name: field_banner_image
+entity_type: node
+bundle: homepage
+label: Banner
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      banner_image: banner_image
+      banner_video: banner_video
+      banner_video_upload: banner_video_upload
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: banner_image
+field_type: entity_reference

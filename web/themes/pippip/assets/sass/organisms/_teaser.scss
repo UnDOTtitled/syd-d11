@@ -1,0 +1,101 @@
+/**
+ * ----------------------
+ * Un.titled
+ * Organisms - Teasers
+ * ----------------------
+ */
+
+.o-teaser {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  &__thumb {
+    display: block;
+    width: 100%;
+    position: relative;
+    background-color: var(--c-primary);
+
+    .a-image-credit {
+      left: calc(var(--bump) / 1.5);
+    }
+
+    img {
+      transition: var(--transition);
+      object-fit: cover;
+      object-position: center center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    picture {
+      &:after {
+        padding-bottom: 81%;
+      }
+
+      img {
+        &.lazy {
+          content: "";
+          position: relative;
+          display: block;
+          padding-bottom: 81%;
+
+          &.loaded {
+            padding-bottom: 0;
+          }
+          &.error {
+            padding-bottom: 81%;
+          }
+        }
+      }
+    }
+
+    & > .a-media {
+      display: block;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      padding-bottom: 66.65%;
+      height: 100%;
+    }
+
+    &:hover {
+      img {
+        opacity: 0.6;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: calc(var(--bump) / 2);
+
+    p {
+      &:last-of-type {
+        margin-bottom: var(--bump);
+
+        @include media('<sm') {
+          margin-bottom: calc(var(--bump) / 2);
+        }
+      }
+    }
+  }
+
+  &__buttons {
+    margin-top: auto;
+    padding: 0 calc(var(--bump) / 1.5) calc(var(--bump) / 1.5);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(var(--bump) / 2);
+    align-self: flex-start;
+  }
+}

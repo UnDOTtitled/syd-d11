@@ -1,0 +1,25 @@
+uuid: 4d06e6fb-3009-45dc-b2f8-6183763602b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.banner_video.field_media_oembed_video_1
+    - media.type.banner_video
+id: media.banner_video.default
+targetEntityType: media
+bundle: banner_video
+mode: default
+content:
+  field_media_oembed_video_1:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  name: true
+  thumbnail: true
+  uid: true

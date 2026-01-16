@@ -1,0 +1,22 @@
+{% set jpg= 'jpg' %}
+{% set webp = 'webp' %}
+
+{% set imageSm = image|image_style('banner_image_sm') %}
+{% set imageMd = image|image_style('banner_image_md') %}
+{% set imageBig = image|image_style('banner_image') %}
+
+{# {% set imageSm = image %}
+{% set imageMd = image %}
+{% set imageBig = image %} #}
+
+{# {{ dd(image|image_style('banner_image')) }} #}
+
+<picture>
+	{# <source media="(max-width: 600px)" srcset="{{ imageSm|replace({ (jpg): webp }) }}" type="image/webp"> #}
+	<source media="(max-width: 600px)" srcset="{{ imageSm }}" type="image/jpeg">
+	{# <source media="(max-width: 1000px)" data-srcset="{{ imageMd|replace({ (jpg): webp }) }}" type="image/webp"> #}
+	<source media="(max-width: 1000px)" data-srcset="{{ imageMd }}" type="image/jpeg">
+	{# <source data-srcset="{{ imageBig|replace({ (jpg): webp }) }}" type="image/webp"> #}
+	<source data-srcset="{{ imageBig }}" type="image/jpeg">
+	<img {{ lazyDisable ? create_attribute().setAttribute('src', imageBig) : create_attribute().setAttribute('data-srcset', imageBig) }} {{ title ? create_attribute().setAttribute('title', title) : "" }} {{ alt ? create_attribute().setAttribute('alt', alt) : "" }} {{ lazyDisable ? create_attribute().setAttribute('class', 'eager') : create_attribute().setAttribute('class', 'lazy')  }} {{ height ? create_attribute().setAttribute('height', height) : "" }} {{ width ? create_attribute().setAttribute('width', width) : "" }}>
+</picture>

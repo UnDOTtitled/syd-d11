@@ -1,0 +1,29 @@
+uuid: 96e4cadc-9bae-4f74-bb02-c66984f0896b
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.extra_content.image
+    - field.storage.extra_content.field_image
+    - media.type.image
+id: extra_content.image.field_image
+field_name: field_image
+entity_type: extra_content
+bundle: image
+label: Image
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,6 @@
+{
+  "name": "unt/syd_tweaks",
+  "description": "Various helper functions/tools",
+  "type": "drupal-module",
+  "license": "GPL-2.0-or-later"
+}

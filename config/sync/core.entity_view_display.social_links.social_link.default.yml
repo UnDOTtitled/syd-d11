@@ -1,0 +1,35 @@
+uuid: fce1fde4-485b-4190-83fc-21a347353fc1
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.social_links.social_link
+    - field.field.social_links.social_link.field_social_link
+  module:
+    - link
+id: social_links.social_link.default
+targetEntityType: social_links
+bundle: social_link
+mode: default
+content:
+  field_social_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: null
+      url_only: true
+      url_plain: true
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    weight: -4
+    region: content
+  title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -5
+    region: content
+hidden: {  }

@@ -1,0 +1,31 @@
+{% include '@pippip/partials/molecules/banner.twig' with {
+	ct: ct,
+	lazyDisable: true,
+} %}
+
+<div class="grid justify-center">
+	<div class="col-12">
+		<div class="grid justify-space-between">
+			<div class="col-sm-8 col-lg-7 order-1 order-sm-0" aria-label="Main content">
+				{% if content.body|render %}
+					<div class="m-entity m-entity__body">
+						{{ content.body }}
+					</div>
+				{% endif %}
+
+				{% if content.field_content|render %}
+					{{ content.field_content}}
+				{% endif %}
+			</div>
+
+			{% if ct == 'page' %}
+				<div class="col-sm-4 col-lg-3 order-0 order-sm-1" aria-label="Sidebar">
+						{% include '@pippip/partials/molecules/subnav.twig' %}
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
+
+
+{% include '@pippip/partials/molecules/related-content.twig' %}

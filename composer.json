@@ -1,0 +1,237 @@
+{
+    "name": "pantheon-upstreams/drupal-composer-managed",
+    "description": "Install Drupal 9 with Composer on Pantheon.",
+    "type": "project",
+    "license": "MIT",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "path",
+            "url": "upstream-configuration"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "enyo/dropzone",
+                "version": "5.7.2",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/enyo/dropzone/archive/v5.7.2.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "desandro/imagesloaded",
+                "version": "5.0.0",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/desandro/imagesloaded/archive/v5.0.0.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "desandro/masonry",
+                "version": "4.2.2",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/desandro/masonry/archive/v4.2.2.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "jashkenas/backbone",
+                "version": "1.6.1",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/jashkenas/backbone/archive/refs/tags/1.6.1.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "jashkenas/underscore",
+                "version": "1.13.7",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/jashkenas/underscore/archive/refs/tags/1.13.7.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "unt/adminimal_theme",
+                "version": "1.x-dev@dev",
+                "type": "drupal-theme",
+                "dist": {
+                    "url": "https://ftp.drupal.org/files/projects/adminimal_theme-8.x-1.x-dev.zip",
+                    "type": "zip"
+                }
+            }
+        }
+    ],
+    "require": {
+        "pantheon-upstreams/upstream-configuration": "dev-main",
+        "composer/installers": "^1.9",
+        "drupal/core-composer-scaffold": "^11",
+        "drupal/core-recommended": "^11",
+        "pantheon-systems/drupal-integrations": "^11",
+        "cweagans/composer-patches": "^1.7",
+        "drush/drush": "^13",
+        "desandro/imagesloaded": "^5.0",
+        "desandro/masonry": "^4.2",
+        "drupal/admin_toolbar": "^3.4",
+        "drupal/block_permissions": "^1.3",
+        "drupal/block_region_permissions": "^1.5",
+        "jashkenas/backbone": "^1",
+        "jashkenas/underscore": "^1",
+        "drupal/classy": "^2.0",
+        "drupal/config_ignore": "^3.3",
+        "drupal/ctools": "^4.0",
+        "drupal/devel": "^5.1",
+        "drupal/dropzonejs": "^2.8",
+        "drupal/eck": "^2.0",
+        "drupal/embed": "^1.6",
+        "drupal/entity_browser": "^2.9",
+        "drupal/entity_embed": "^1.4",
+        "drupal/field_group": "^3.4",
+        "drupal/field_tools": "^1.0@alpha",
+        "drupal/file_browser": "^2.0",
+        "drupal/imageapi_optimize": "^4.0",
+        "drupal/imageapi_optimize_resmushit": "^2.0@beta",
+        "drupal/imagemagick": "^5.0@RC",
+        "drupal/inline_entity_form": "^3.0@RC",
+        "drupal/linkit": "^7.0",
+        "drupal/m4032404": "^2.0",
+        "drupal/menu_admin_per_menu": "^1.5",
+        "drupal/menu_block": "^1.10",
+        "drupal/menu_link_attributes": "^1.3",
+        "drupal/metatag": "^2.2",
+        "drupal/pathauto": "^1.11",
+        "drupal/publishcontent": "^1.6",
+        "drupal/rebuild_cache_access": "^1.8",
+        "drupal/redirect": "^1.8",
+        "drupal/rename_admin_paths": "^3.1",
+        "drupal/robotstxt": "^1.5",
+        "drupal/roleassign": "^2.0",
+        "drupal/seven": "^2.0@beta",
+        "drupal/smart_trim": "^2.1",
+        "drupal/stage_file_proxy": "^3.1",
+        "drupal/token": "^1.11",
+        "drupal/twig_tweak": "^3.4",
+        "drupal/video_embed_field": "^3.0",
+        "drupal/view_unpublished": "^1.1",
+        "drupal/webp": "^1.0@RC",
+        "drupal/xmlsitemap": "^2.0",
+        "enyo/dropzone": "^5.7",
+        "kint-php/kint": "^4.2",
+        "drupal/devel_entity_updates": "^5.0",
+        "drupal/better_exposed_filters": "^7.1",
+        "drupal/config_filter": "^2.7"
+    },
+    "require-dev": {
+        "drupal/core-dev": "^11"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "./web"
+            },
+            "allowed-packages": [
+                "pantheon-systems/drupal-integrations"
+            ],
+            "file-mapping": {
+                "[project-root]/.editorconfig": false,
+                "[project-root]/pantheon.upstream.yml": false,
+                "[project-root]/.gitattributes": false
+            }
+        },
+        "installer-paths": {
+            "web/core": [
+                "type:drupal-core"
+            ],
+            "web/libraries/{$name}": [
+                "type:drupal-library"
+            ],
+            "web/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "web/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "web/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/Commands/contrib/{$name}": [
+                "type:drupal-drush"
+            ],
+            "web/modules/custom/{$name}": [
+                "type:drupal-custom-module"
+            ],
+            "web/profiles/custom/{$name}": [
+                "type:drupal-custom-profile"
+            ],
+            "web/themes/custom/{$name}": [
+                "type:drupal-custom-theme"
+            ],
+            "web/private/scripts/quicksilver/{$name}/": [
+                "type:quicksilver-script"
+            ]
+        },
+        "composer-exit-on-patch-failure": true,
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "enable-patching": true,
+        "patches": []
+    },
+    "autoload": {
+        "classmap": [
+            "upstream-configuration/scripts/ComposerScripts.php"
+        ]
+    },
+    "scripts": {
+        "pre-update-cmd": [
+            "DrupalComposerManaged\\ComposerScripts::preUpdate"
+        ],
+        "post-update-cmd": [
+            "DrupalComposerManaged\\ComposerScripts::postUpdate"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": false,
+        "platform": {
+            "php": "8.3.11"
+        },
+        "allow-plugins": {
+            "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "drupal/core-composer-scaffold": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true,
+            "php-http/discovery": true,
+            "tbachert/spi": true
+        }
+    }
+}

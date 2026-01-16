@@ -1,0 +1,35 @@
+{% if content.field_banner_image |render %}
+	<div class="m-banner m-banner--{{ ct }}" aria-label="Page banner">
+
+		{% if content.field_banner_image[1]|render %}
+			<div class="desktop-slider">
+				<div class="desktop-slider-wrapper js-desktop-slider">
+					{{ content.field_banner_image }}
+				</div>
+				<button class="desktop-slider-pause  js-desktop-slider-pause"></button>
+			</div>
+		{% else %}
+			<figure class="m-banner__image">
+				{{ content.field_banner_image }}
+			</figure>
+		{% endif %}
+
+	</div>
+
+{% else %}
+
+	<div class="m-no-banner m-no-banner--{{ ct }}" aria-label="Page banner">
+		<div class="grid">
+			<div class="col-12">
+
+				{% if node.title.value %}
+					<h1>
+						{{ node.title.value }}
+					</h1>
+				{% endif %}
+
+			</div>
+		</div>
+	</div>
+
+{% endif %}

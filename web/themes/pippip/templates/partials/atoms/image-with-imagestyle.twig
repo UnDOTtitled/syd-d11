@@ -1,0 +1,52 @@
+{# 
+    --- Example usage ---
+
+    {% if content.field_image|render %}        
+        {% include '@pippip/partials/atoms/image-with-imagestyle.twig' with {
+            title: content.field_image[0]["#media"].field_media_image[0].alt,
+            imageUrl: content.field_image[0]["#media"].field_media_image.entity.uri.value,
+            alt: content.field_image[0]["#media"].field_media_image[0].alt,
+            imageStyle: "inline_image"
+        } %}
+    {% endif %}
+
+#}
+
+{% set jpg= 'jpg' %}
+{% set webp = 'webp' %}
+{% set image = imageUrl %}
+
+{% if imageStyle %}
+    {% if imageStyle is iterable %}
+        {% set imageSm = image|image_style(imageStyle.imageSm) %}
+        {% set imageMd = image|image_style(imageStyle.imageMd) %}
+        {% set imageBg = image|image_style(imageStyle.imageBg) %}
+
+        <picture>
+            {# <source media="(max-width: 768px)" srcset="{{ imageSm|replace({ (jpg): webp }) }}" type="image/webp"> #}
+            <source media="(max-width: 768px)" srcset="{{ imageSm }}" type="image/jpeg">
+            {# <source media="(max-width: 992px)" data-srcset="{{ imageMd|replace({ (jpg): webp }) }}" type="image/webp"> #}
+            <source media="(max-width: 992px)" data-srcset="{{ imageMd }}" type="image/jpeg">
+            {# <source data-srcset="{{ imageBg|replace({ (jpg): webp }) }}" type="image/webp"> #}
+            <source data-srcset="{{ imageBg }}" type="image/jpeg">
+            <img data-src="{{ imageBg }}" {{ title ? create_attribute().setAttribute('title', title) : "" }} {{ alt ? create_attribute().setAttribute('alt', alt) : "" }} {{ lazyDisable ? "" : create_attribute().setAttribute('class', 'lazy')  }}/>
+        </picture>
+    {% else %}
+        {% set imageWithStyle = image|image_style(imageStyle) %}
+
+        <picture>
+            <source data-srcset="{{ imageWithStyle|replace({ (jpg): webp }) }}" type="image/webp">
+            <source data-srcset="{{ imageWithStyle }}" type="image/jpeg">
+            <img src="{{ imageWithStyle }}" {{ title ? create_attribute().setAttribute('title', title) : "" }} {{ alt ? create_attribute().setAttribute('alt', alt) : "" }} {{ lazyDisable ? "" : create_attribute().setAttribute('class', 'lazy')  }}/>
+        </picture>
+    {% endif %}
+
+{% else %}
+    {% set imageWithStyle = file_url(image) %}
+    <picture>
+        <source data-srcset="{{ imageWithStyle|replace({ (jpg): webp }) }}" type="image/webp">
+        <source data-srcset="{{ imageWithStyle }}" type="image/jpeg">
+        <img src="{{ imageWithStyle }}" {{ title ? create_attribute().setAttribute('title', title) : "" }} {{ alt ? create_attribute().setAttribute('alt', alt) : "" }} {{ lazyDisable ? "" : create_attribute().setAttribute('class', 'lazy')  }}/>
+    </picture>
+
+{% endif %}

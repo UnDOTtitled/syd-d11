@@ -1,0 +1,13 @@
+uuid: a6747325-c4ae-4d59-950c-3b7b91237f75
+langcode: en
+status: true
+dependencies: {  }
+id: banner_video_upload
+label: 'Banner Video Upload'
+description: ''
+source: video_file
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_video_file
+field_map: {  }

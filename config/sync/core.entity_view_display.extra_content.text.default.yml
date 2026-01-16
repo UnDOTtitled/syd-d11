@@ -1,0 +1,43 @@
+uuid: 1bee5863-2ded-4f4e-9f89-0ccfc6678bac
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.extra_content.text
+    - field.field.extra_content.text.field_copy
+    - field.field.extra_content.text.field_display_title
+  module:
+    - text
+_core:
+  default_config_hash: trxMspPoC17iGTGb3XPEy8_Bk4_vsfBD0hcrBd4JCVM
+id: extra_content.text.default
+targetEntityType: extra_content
+bundle: text
+mode: default
+content:
+  field_copy:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: -4
+    region: content
+  field_display_title:
+    type: boolean
+    label: hidden
+    settings:
+      format: boolean
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: -3
+    region: content
+  title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -5
+    region: content
+hidden: {  }

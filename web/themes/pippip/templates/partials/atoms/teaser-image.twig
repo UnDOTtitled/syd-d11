@@ -1,0 +1,16 @@
+{% set jpg= 'jpg' %}
+{% set webp = 'webp' %}
+
+{% if mode == 'teaser' %}
+	{% set imagestyle = 'teaser_thumb' %}
+{% else %}
+	{% set imagestyle = 'teaser_thumb' %}
+{% endif %}
+
+{% set imageBig = image|image_style(imagestyle)%}
+
+<picture>
+	{# <source data-srcset="{{ imageBig|replace({ (jpg): webp }) }}" type="image/webp"> #}
+	<source data-srcset="{{ imageBig }}" type="image/jpeg">
+	<img {{ lazyDisable ? create_attribute().setAttribute('src', imageBig) : create_attribute().setAttribute('data-srcset', imageBig) }} {{ title ? create_attribute().setAttribute('title', title) : "" }} {{ alt ? create_attribute().setAttribute('alt', alt) : "" }} {{ lazyDisable ? create_attribute().setAttribute('class', 'eager') : create_attribute().setAttribute('class', 'lazy')  }} {{ height ? create_attribute().setAttribute('height', height) : "" }} {{ width ? create_attribute().setAttribute('width', width) : "" }}>
+</picture>

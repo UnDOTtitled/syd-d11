@@ -1,0 +1,9 @@
+uuid: d4792d80-310c-42ac-b748-ab008ba9c5fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_entity_type.extra_content
+name: 'Highlight panel'
+type: highlight_panel
+description: ''

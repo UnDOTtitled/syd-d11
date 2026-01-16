@@ -1,0 +1,15 @@
+{% set png= 'png' %}
+{# {% set webp = 'webp' %} #}
+
+<a href="{{ content.field_logo_link }}" title="{{ content.title }}" class="m-logos__logo" rel="noopener nofollow" aria-label="Open {{ content.field_logo[0]['#item'].alt }}'s website">
+  {% set imageUrl = content.field_logo[0]['#item'].entity.uri.value %}
+
+  {% set image = file_url(content.field_logo[0]['#media'].field_media_image_1.entity.uri.value) %}
+
+
+  <picture>
+    {# <source data-srcset="{{ image|replace({ (png): webp }) }}" type="image/webp"> #}
+    <source data-srcset="{{ image }}" type="image/jpeg">
+    <img src="{{ image }}" alt="{{ content.field_logo[0]['#media'].field_media_image_1[0]['#item'].alt }}" />
+  </picture>
+</a>

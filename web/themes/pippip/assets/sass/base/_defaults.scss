@@ -1,0 +1,64 @@
+/**
+ * ----------------------
+ * Un.titled
+ * Base - Defaults
+ * ----------------------
+ */
+
+.grid {
+  max-width: var(--containerWidth);
+}
+
+.container-full > .grid {
+  max-width: none;
+}
+
+ul.menu,
+ul.plain {
+  @include li-reset;
+}
+
+img {
+  backface-visibility: hidden;
+  transition: var(--transition);
+
+  &.lazy {
+    opacity: 0;
+
+    @media not all and (min-resolution: 0.001dpcm) {
+      @supports (-webkit-appearance: none) {
+        opacity: 1;
+      }
+    }
+  }
+
+  &.loaded {
+    opacity: 1;
+  }
+}
+
+.svg {
+  transition: all var(--transition);
+}
+
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+// Keep video ratio for fluid widths
+.video-container,
+.media-vimeo-video {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 25px;
+  height: 0;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

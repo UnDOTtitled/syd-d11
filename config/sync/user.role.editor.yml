@@ -1,0 +1,60 @@
+uuid: cb1f6627-56e6-447d-b528-948d668e89d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.full_html
+    - node.type.homepage
+    - node.type.page
+  module:
+    - dropzonejs
+    - eck
+    - entity_browser
+    - filter
+    - media
+    - node
+    - publishcontent
+    - shortcut
+    - system
+    - toolbar
+    - view_unpublished
+_core:
+  default_config_hash: GSwyO8TwmxXjyHO_RCYn_0qKHwbaQErtC_mDnkx_yGo
+id: editor
+label: Editor
+weight: 2
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access browse_files entity browser pages'
+  - 'access browse_files_modal entity browser pages'
+  - 'access content overview'
+  - 'access shortcuts'
+  - 'access toolbar'
+  - 'create accordion_row entities'
+  - 'create extra_content entities'
+  - 'create logos entities'
+  - 'create media'
+  - 'create page content'
+  - 'create social_links entities'
+  - 'delete any accordion_row entities'
+  - 'delete any extra_content entities'
+  - 'delete any logos entities'
+  - 'delete any media'
+  - 'delete any social_links entities'
+  - 'dropzone upload files'
+  - 'edit any accordion_row entities'
+  - 'edit any extra_content entities'
+  - 'edit any homepage content'
+  - 'edit any logos entities'
+  - 'edit any page content'
+  - 'edit any social_links entities'
+  - 'publish editable content'
+  - 'unpublish editable content'
+  - 'update any media'
+  - 'use text format full_html'
+  - 'view any accordion_row entities'
+  - 'view any extra_content entities'
+  - 'view any logos entities'
+  - 'view any unpublished content'
+  - 'view the administration theme'

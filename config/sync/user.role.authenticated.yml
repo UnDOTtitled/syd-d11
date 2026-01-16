@@ -1,0 +1,23 @@
+uuid: 9d239906-2233-4774-ae70-03b66c24db2b
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+    - media
+    - system
+_core:
+  default_config_hash: ecjKqYe21tV2tPz6aLXxnzGKF2rts0xqAAeKEh2D7c0
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access content'
+  - 'cancel account'
+  - 'change own username'
+  - 'view any accordion_row entities'
+  - 'view any extra_content entities'
+  - 'view any logos entities'
+  - 'view any social_links entities'
+  - 'view media'

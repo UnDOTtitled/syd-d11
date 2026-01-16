@@ -1,0 +1,15 @@
+{% extends 'page.html.twig' %}
+
+{% block content %}
+  <section class="m-no-banner o-search-results">
+    <div class="grid">
+      <div class="col-sm-12">
+        <h1>
+          Search results for {{ search_term }}
+        </h1>
+
+        {{ page.content }}
+      </div>
+    </div>
+  </section>
+{% endblock content %}

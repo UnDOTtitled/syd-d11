@@ -1,0 +1,13 @@
+uuid: e7ec78bc-4c9b-43c5-99d0-0f9a9190d743
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: RQXdy20Zfm6KmWwcDLpz1-K8i-P69C_SlFAzUOZHNPU
+id: logos
+label: Logo
+uid: false
+created: false
+changed: false
+title: true
+standalone_url: null

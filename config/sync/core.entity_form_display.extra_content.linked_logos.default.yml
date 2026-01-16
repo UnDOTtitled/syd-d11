@@ -1,0 +1,56 @@
+uuid: 5dc24318-5e5c-4d1f-a08b-1a26698d85f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.extra_content.linked_logos
+    - field.field.extra_content.linked_logos.field_display_title
+    - field.field.extra_content.linked_logos.field_logos
+  module:
+    - inline_entity_form
+_core:
+  default_config_hash: rs_ZJ4S7hDvoMAvqDc4vLnYiWlwGqoE9MszRI6ppmeE
+id: extra_content.linked_logos.default
+targetEntityType: extra_content
+bundle: linked_logos
+mode: default
+content:
+  field_display_title:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_logos:
+    type: inline_entity_form_complex
+    weight: 2
+    region: content
+    settings:
+      form_mode: default
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      allow_duplicate: true
+      collapsible: false
+      collapsed: false
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 100
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

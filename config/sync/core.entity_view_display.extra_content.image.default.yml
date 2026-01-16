@@ -1,0 +1,43 @@
+uuid: 183799d1-1a3d-415d-baf3-01cb156ed1f9
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.extra_content.image
+    - field.field.extra_content.image.field_display_title
+    - field.field.extra_content.image.field_image
+_core:
+  default_config_hash: DGC9k2N5eAOdYlSXc_WSNgGfjyWl6VYzwNE3EmkkIVE
+id: extra_content.image.default
+targetEntityType: extra_content
+bundle: image
+mode: default
+content:
+  field_display_title:
+    type: boolean
+    label: hidden
+    settings:
+      format: boolean
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: -3
+    region: content
+  field_image:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: -2
+    region: content
+  title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -5
+    region: content
+hidden: {  }

@@ -1,0 +1,186 @@
+/**
+ * ----------------------
+ * Un.titled
+ * Base - Typography
+ * ----------------------
+ */
+
+/**
+ * Config
+ */
+
+/**
+ * Heading
+ */
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  margin-top: 0;
+  font-family: var(--fontTitle);
+  font-weight: normal;
+  margin-bottom: 1rem;
+}
+
+h1,
+.h1 {
+  line-height: 1.15;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+}
+
+h2,
+.h2 {
+  line-height: 1.15;
+  font-size: clamp(1.8rem, 2.5vw, 3rem);
+}
+
+h3,
+.h3 {
+  line-height: 1.3;
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+}
+
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  font-family: var(--fontBold);
+  line-height: 1.5;
+  font-size: 1rem;
+
+  @include media('<xs') {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/**
+ * Paragraphs
+ */
+p {
+  margin: 1.5em 0;
+  overflow-wrap: break-word;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+/**
+ * Lists
+ */
+ul,
+ol {
+  margin: 1.5rem 0;
+  list-style-position: inside;
+  padding-left: 0;
+}
+
+/**
+ * Links
+ */
+a {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: underline;
+  transition: all var(--transition);
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+    color: currentColor;
+  }
+
+  &:focus {
+    outline: 3px dashed currentColor;
+
+    @include focus-visible() {
+      outline: 0;
+    }
+  }
+
+  &.no-link {
+    pointer-events: none;
+  }
+}
+
+.no-click {
+  pointer-events: none;
+  cursor: default;
+}
+
+::selection {
+  background-color: var(--c-secondary);
+  color: var(--c-primary);
+}
+
+/**
+ * Buttons
+ */
+button {
+  &:focus {
+    outline: 3px dashed currentColor;
+
+    @include focus-visible() {
+      outline: 0;
+    }
+  }
+}
+
+/**
+ * Inline
+ */
+strong {
+  font-weight: normal;
+  font-family: var(--fontBold);
+}
+
+em {
+  font-family: var(--fontItalic);
+  font-style: italic;
+}
+
+span {
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  font-size: inherit;
+}
+
+address {
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  font-size: inherit;
+  font-style: normal;
+}
+
+small {
+  font-size: 90%;
+}
+
+hr {
+  border: solid var(--c-primary);
+  border-width: 0 0 1px 0;
+  width: 100%;
+}
+
+figure {
+  margin: 0;
+}

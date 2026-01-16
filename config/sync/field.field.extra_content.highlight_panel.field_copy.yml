@@ -1,0 +1,26 @@
+uuid: 3e181656-b78e-4943-9f3b-cfa36c7cdb28
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.extra_content.highlight_panel
+    - field.storage.extra_content.field_copy
+    - filter.format.full_html
+    - filter.format.raw_html
+  module:
+    - text
+id: extra_content.highlight_panel.field_copy
+field_name: field_copy
+entity_type: extra_content
+bundle: highlight_panel
+label: Copy
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+    - raw_html
+field_type: text_long

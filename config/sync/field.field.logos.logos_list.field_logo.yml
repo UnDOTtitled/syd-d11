@@ -1,0 +1,29 @@
+uuid: 9471206c-2ee7-43a1-a040-d96680b034c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.logos.logos_list
+    - field.storage.logos.field_logo
+    - media.type.logo
+id: logos.logos_list.field_logo
+field_name: field_logo
+entity_type: logos
+bundle: logos_list
+label: Logo
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      logo: logo
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

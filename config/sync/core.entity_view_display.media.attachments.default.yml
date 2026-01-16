@@ -1,0 +1,27 @@
+uuid: 27da0c92-9752-40e6-b736-d3eb448b9f63
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.attachments.field_media_audio_file
+    - media.type.attachments
+  module:
+    - file
+id: media.attachments.default
+targetEntityType: media
+bundle: attachments
+mode: default
+content:
+  field_media_audio_file:
+    type: file_default
+    label: visually_hidden
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  name: true
+  thumbnail: true
+  uid: true

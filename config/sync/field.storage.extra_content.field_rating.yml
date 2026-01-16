@@ -1,0 +1,22 @@
+uuid: 2fa9c247-a48b-4758-86c6-8497fda7466c
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+_core:
+  default_config_hash: SpaZ2DX5GQlM7eHh2IQ5mebjsk6QKpIFF4_OpZtVYMs
+id: extra_content.field_rating
+field_name: field_rating
+entity_type: extra_content
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

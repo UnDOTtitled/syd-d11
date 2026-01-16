@@ -1,0 +1,13 @@
+uuid: c12d67e2-0e27-458f-8a8c-6b138040a5b6
+langcode: en
+status: true
+dependencies: {  }
+id: attachments
+label: Attachments
+description: ''
+source: file
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_audio_file
+field_map: {  }

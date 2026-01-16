@@ -1,0 +1,21 @@
+uuid: d8a3ff05-b7a1-43c4-8584-cb90798e57d1
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+    - media
+    - system
+_core:
+  default_config_hash: Sm6KZOh49tnEt2GLk8ZzTZ3YRWt4nwxR_wGAD5AwsTw
+id: anonymous
+label: 'Anonymous user'
+weight: 0
+is_admin: false
+permissions:
+  - 'access content'
+  - 'view any accordion_row entities'
+  - 'view any extra_content entities'
+  - 'view any logos entities'
+  - 'view any social_links entities'
+  - 'view media'

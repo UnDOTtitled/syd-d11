@@ -1,0 +1,27 @@
+uuid: a6594028-be83-4cf0-bab7-c2df0bd93554
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_library
+    - field.field.media.banner_video.field_media_oembed_video_1
+    - media.type.banner_video
+id: media.banner_video.media_library
+targetEntityType: media
+bundle: banner_video
+mode: media_library
+content:
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_media_oembed_video_1: true
+  path: true
+  status: true
+  uid: true

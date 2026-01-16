@@ -1,0 +1,20 @@
+uuid: 4d7b6e84-4a64-4060-9242-82f296dbed09
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+    - media
+id: extra_content.field_video
+field_name: field_video
+entity_type: extra_content
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,19 @@
+uuid: c1ba0f43-692e-40ed-a65f-6e885e0c6136
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+    - link
+id: social_links.field_social_link
+field_name: field_social_link
+entity_type: social_links
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

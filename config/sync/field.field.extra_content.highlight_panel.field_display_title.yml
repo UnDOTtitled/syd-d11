@@ -1,0 +1,23 @@
+uuid: 2a2462ad-0b1a-4560-8e77-47f64c64c16c
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.extra_content.highlight_panel
+    - field.storage.extra_content.field_display_title
+id: extra_content.highlight_panel.field_display_title
+field_name: field_display_title
+entity_type: extra_content
+bundle: highlight_panel
+label: 'Display title?'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

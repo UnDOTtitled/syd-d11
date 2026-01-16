@@ -1,0 +1,37 @@
+name: Pippip
+type: theme
+description: Syd base theme
+base theme: classy
+version: 11.x
+core_version_requirement: ^11
+libraries:
+  - pippip/global
+
+regions:
+  admin: Admin
+  content: Content
+  highlighted: Highlighted
+  help: Help
+  hidden: Hidden
+
+libraries-override:
+  classy/base: false
+  classy/file: false
+  classy/messages: false
+  system/base: false
+  system/menu: false
+  system/admin: false
+  system/maintenance: false
+  system/drupal.system: false
+  system/drupal.system.modules: false
+  system/diff: false
+  system/drupal.system.date: false
+  system/normalize: false
+  core/normalize: false
+  contextual/drupal.contextual-links: false
+  quickedit/quickedit: false
+  views/views.module: false
+  anchor_link/drupal.anchor_link: false
+  video_embed_field/responsive-video: false
+  miniorange_saml/miniorange_saml.admin: false
+  miniorange_saml/miniorange_saml.Vtour: false

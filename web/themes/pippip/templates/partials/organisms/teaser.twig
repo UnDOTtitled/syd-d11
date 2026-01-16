@@ -1,0 +1,57 @@
+{% set class =  'o-teaser-' ~ mode %}
+
+
+{% if  content.field_banner_image or content.field_teaser_image|render %}
+	{% if content.field_teaser_image|render %}
+		{% set imageUri = content.field_teaser_image[0]['#media'].field_media_image_2.entity.uri.value %}
+		{% set imageAlt = content.field_teaser_image[0]['#media'].field_media_image_2[0].alt %}
+		{% set imageTitle = content.field_teaser_image[0]['#media'].field_media_image_2[0].title %}
+		{% set imageHeight = content.field_teaser_image[0]['#media'].field_media_image_2[0].height %}
+		{% set imageWidth = content.field_teaser_image[0]['#media'].field_media_image_2[0].width %}
+	{% else %}
+		{% set imageUri = content.field_banner_image[0]['#media'].field_media_image_3.entity.uri.value %}
+		{% set imageAlt = content.field_banner_image[0]['#media'].field_media_image_3[0].alt %}
+		{% set imageTitle = content.field_banner_image[0]['#media'].field_media_image_3[0].title %}
+		{% set imageHeight = content.field_banner_image[0]['#media'].field_media_image_3[0].height %}
+		{% set imageWidth = content.field_banner_image[0]['#media'].field_media_image_3[0].width %}
+	{% endif %}
+
+	<a href="{{ url }}" class="{{ class }}__thumb o-teaser__thumb" title="Open {{ node.title.value }}">
+
+		{% include '@pippip/partials/atoms/teaser-image.twig' with {
+			image: imageUri,
+			mode: mode,
+			alt: imageAlt,
+			title: imageTitle,
+			height: imageHeight,
+			width: imageWidth,
+			lazyDisable: lazyDisable == false ? lazyDisable : true,
+		} %}
+	</a>
+{% endif %}
+
+<div class="{{ class }}__content o-teaser__content">
+
+	<h2>
+		<a href="{{ url }}" title="Open {{ node.title.value }}">
+			{{ node.title.value }}
+		</a>
+	</h2>
+
+	{% if content.body|render %}
+		{{ content.body}}
+	{% endif %}
+
+</div>
+
+<div class="{{ class }}__buttons o-teaser__buttons">
+
+	<a href="{{ url }}" class="a-btn" title="Open {{ node.title.value }}">Read more</a>
+
+	{% if booking_link %}
+		{% if not pastEvent %}
+			{{ booking_link }}
+		{% endif %}
+	{% endif %}
+
+</div>

@@ -1,0 +1,9 @@
+_core:
+  default_config_hash: claOMBKuXMxbMKaC3_4aLztnH3sMbzAyQo28b6PDh34
+ignored_config_entities:
+  - stage_file_proxy.settings
+  - yv_tnew.settings
+  - system.performance
+  - 'block.*'
+  - robotstxt.settings
+  - imagemagick.settings

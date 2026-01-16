@@ -1,0 +1,97 @@
+uuid: d9a026b9-7ea6-434b-99e0-5a20d85e6b5d
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.full_html
+    - node.type.homepage
+    - node.type.page
+  module:
+    - block_content_permissions
+    - dropzonejs
+    - eck
+    - entity_browser
+    - filter
+    - media
+    - menu_admin_per_menu
+    - node
+    - publishcontent
+    - rebuild_cache_access
+    - redirect
+    - roleassign
+    - shortcut
+    - system
+    - toolbar
+    - view_unpublished
+_core:
+  default_config_hash: veKr-LoREI7RgCq8Og1MAx08BKxLLzfdGkTSBwuRd4Y
+id: super_editor
+label: 'Super Editor'
+weight: 3
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access browse_files entity browser pages'
+  - 'access browse_files_modal entity browser pages'
+  - 'access content overview'
+  - 'access shortcuts'
+  - 'access toolbar'
+  - 'administer footer menu items'
+  - 'administer main menu items'
+  - 'administer redirects'
+  - 'administer users'
+  - 'assign roles'
+  - 'create accordion_row entities'
+  - 'create extra_content entities'
+  - 'create logos entities'
+  - 'create media'
+  - 'create page content'
+  - 'create social_links entities'
+  - 'delete all revisions'
+  - 'delete any accordion_row entities'
+  - 'delete any extra_content entities'
+  - 'delete any logos entities'
+  - 'delete any media'
+  - 'delete any page content'
+  - 'delete any social_links entities'
+  - 'dropzone upload files'
+  - 'edit any accordion_row entities'
+  - 'edit any extra_content entities'
+  - 'edit any homepage content'
+  - 'edit any logos entities'
+  - 'edit any page content'
+  - 'edit any social_links entities'
+  - 'publish any content'
+  - 'publish any node type homepage'
+  - 'publish any node type page'
+  - 'publish editable node type homepage'
+  - 'publish editable node type page'
+  - 'publish own node type homepage'
+  - 'publish own node type page'
+  - 'rebuild cache access'
+  - 'revert all revisions'
+  - 'revert homepage revisions'
+  - 'revert page revisions'
+  - 'unpublish any content'
+  - 'unpublish any node type homepage'
+  - 'unpublish any node type page'
+  - 'unpublish editable node type homepage'
+  - 'unpublish editable node type page'
+  - 'unpublish own node type homepage'
+  - 'unpublish own node type page'
+  - 'update any emergency_message block content'
+  - 'update any general block content'
+  - 'update any media'
+  - 'update any partners block content'
+  - 'update any social_links block content'
+  - 'use text format full_html'
+  - 'view all media revisions'
+  - 'view all revisions'
+  - 'view any accordion_row entities'
+  - 'view any extra_content entities'
+  - 'view any logos entities'
+  - 'view any unpublished content'
+  - 'view homepage revisions'
+  - 'view own unpublished content'
+  - 'view page revisions'
+  - 'view the administration theme'

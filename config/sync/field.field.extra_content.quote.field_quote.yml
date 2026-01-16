@@ -1,0 +1,28 @@
+uuid: 1e638206-0be5-4189-9b7a-19c332bcbb9e
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.extra_content.quote
+    - field.storage.extra_content.field_quote
+    - filter.format.full_html
+    - filter.format.raw_html
+  module:
+    - text
+_core:
+  default_config_hash: QQpER_hVdjqOn29lfCenB3BvcuO08OSj3dTzurt_1Co
+id: extra_content.quote.field_quote
+field_name: field_quote
+entity_type: extra_content
+bundle: quote
+label: Quote
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+    - raw_html
+field_type: text_long

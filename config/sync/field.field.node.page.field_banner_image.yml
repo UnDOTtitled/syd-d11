@@ -1,0 +1,33 @@
+uuid: 6fdeb2b8-5061-47c9-abc8-9bd333e486f4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_banner_image
+    - media.type.banner_image
+    - media.type.banner_video
+    - media.type.banner_video_upload
+    - node.type.page
+id: node.page.field_banner_image
+field_name: field_banner_image
+entity_type: node
+bundle: page
+label: 'Banner Image'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      banner_image: banner_image
+      banner_video: banner_video
+      banner_video_upload: banner_video_upload
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: banner_image
+field_type: entity_reference

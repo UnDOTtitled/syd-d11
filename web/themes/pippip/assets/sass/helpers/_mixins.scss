@@ -1,0 +1,144 @@
+/**
+ * ----------------------
+ * Un.titled
+ * Helpers - Global mixins
+ * ----------------------
+ */
+
+// Reset <li> elements
+@mixin li-reset {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+// Remove text from elements
+@mixin rm-text {
+  text-align: left;
+  text-indent: -9999px;
+}
+
+// Background images
+@mixin bg-img($size) {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: $size;
+}
+
+// IE 9+ only
+@mixin ie($property, $value) {
+  @media screen and (min-width: 0\0) and (min-resolution: +72dpi) {
+    #{$property}: #{$value};
+  }
+}
+
+@mixin btnReset {
+  background-color: transparent;
+  border: 0;
+  appearance: none;
+  padding: 0;
+}
+
+@mixin desktop-slider {
+  .desktop-slider,
+  .mobiledesktop-slider {
+    overflow: visible;
+    @include media('>sm') {
+      margin-top: 40px;
+    }
+    .desktop-slider-button-disabled {
+      display: none;
+    }
+    @include media('<sm') {
+      position: relative;
+      margin: 20px 0 -20px 0;
+    }
+
+    &-wrapper {
+      height: 100% !important;
+    }
+
+    &-button {
+      &-prev,
+      &-next {
+        width: 24px;
+        z-index: 1;
+
+        @include media('<sm') {
+          display: flex;
+          top: 0;
+          bottom: auto;
+          transform: translateY(-100%);
+        }
+
+        &:after,
+        &:before {
+          @include bg-img(cover);
+          content: '';
+          width: 24px;
+          height: 19px;
+          display: block;
+          background-position: 0px center;
+          transition: 0.3s var(--easing);
+        }
+      }
+
+      &-next {
+        right: 0;
+
+        &:after {
+          background-image: url('../img/icon-arrow-black-right.svg');
+        }
+
+        &.Pink,
+        &.Purple,
+        &.Black,
+        &.DarkBlue {
+          &:after {
+            background-image: url('../img/icon-arrow-white-right.svg');
+          }
+        }
+
+        &:before {
+          display: none;
+        }
+      }
+
+      &-prev {
+        left: 0;
+
+        &:before {
+          background-image: url('../img/icon-arrow-black-left.svg');
+        }
+
+        &.Pink,
+        &.Purple,
+        &.Black,
+        &.DarkBlue {
+          &:before {
+            background-image: url('../img/icon-arrow-white-left.svg');
+          }
+        }
+
+        &:after {
+          display: none;
+        }
+      }
+    }
+    &-slide {
+      a {
+        &:focus,
+        &.focus-visible {
+          display: block;
+          outline: 5px dotted var(--c-black);
+        }  
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{% if content %}
+    <div class="desktop-slider-slide">
+
+        {% set imageUrl = content.field_media_image_3["#items"][0].entity.uri.value %}
+        {% include '@pippip/partials/atoms/banner-image.twig' with {
+            image: imageUrl, 
+            alt: content.field_media_image_3[0]['#item'].alt,
+            noLazy: true,
+            imageStyle : {
+                imageSm: 'banner_image_contained_small',
+                imageMd: 'banner_image_contained_medium',
+                imageBg: 'banner_image_contained'
+            }
+        } %}
+
+    </div>
+{% endif %}

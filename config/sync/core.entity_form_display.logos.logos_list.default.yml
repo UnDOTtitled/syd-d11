@@ -1,0 +1,49 @@
+uuid: 5dc7fbdd-cbe6-4280-846e-f6f660cff9e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.logos.logos_list
+    - field.field.logos.logos_list.field_logo
+    - field.field.logos.logos_list.field_logo_link
+  module:
+    - link
+    - media_library
+_core:
+  default_config_hash: odD6XH7NS63LGZaRFF3CLmmEoiByph3QQpapOzcmfqM
+id: logos.logos_list.default
+targetEntityType: logos
+bundle: logos_list
+mode: default
+content:
+  field_logo:
+    type: media_library_widget
+    weight: 4
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_logo_link:
+    type: link_default
+    weight: 3
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 100
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

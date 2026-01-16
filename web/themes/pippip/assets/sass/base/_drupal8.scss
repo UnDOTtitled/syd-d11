@@ -1,0 +1,125 @@
+/**
+ * ----------------------
+ * Un.titled
+ * Base - Drupal 8 specific
+ * ----------------------
+ */
+
+// Pagination
+.pager {
+  @include li-reset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--bump);
+  flex-wrap: wrap;
+
+  @include media('<sm') {
+    margin-top: calc(var(--bump) / 2);
+  }
+
+  li {
+    display: inline-block;
+
+    a {
+      display: block;
+      padding: 0 10px 0 5px;
+      border-right: 2px solid var(--c-primary);
+      line-height: 1;
+
+      &:hover {
+        color: var(--c-primary);
+        text-decoration: none;
+      }
+    }
+
+    &:last-child {
+      a {
+        border-right: 0;
+        padding-right: 5px;
+      }
+    }
+
+    &.is-active a {
+      color: var(--c-primary);
+      text-decoration: none;
+    }
+  }
+}
+
+// Admnin styles
+.admin-functions {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: var(--c-primary);
+  max-width: 100%;
+  z-index: 31;
+
+  .user-logged-in & {
+    top: 39px;
+  }
+
+  .toolbar-tray-open & {
+    top: 79px;
+  }
+
+  [class*='col-'] {
+    padding: 0 calc(var(--bump) / 2);
+  }
+
+  ul {
+    @include li-reset;
+    border: 0;
+    margin: calc(var(--bump) / 2) 0;
+    padding: 0;
+
+    li {
+      margin-right: var(--bump);
+      display: inline-block;
+
+      a {
+        color: var(--c-white);
+      }
+    }
+  }
+}
+
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  height: 1px;
+  width: 1px;
+  word-wrap: normal;
+}
+
+a.skip-main {
+  left: -999px;
+  position: absolute;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: -999;
+}
+a.skip-main:focus,
+a.skip-main:active {
+  font-weight: bold;
+  color: var(--c-white);
+  background-color: var(--c-primary);
+  left: auto;
+  top: auto;
+  width: 30%;
+  height: auto;
+  overflow: auto;
+  margin: 10px 35%;
+  padding: 5px;
+  text-align: center;
+  font-size: 1.2em;
+  z-index: 999;
+}
+
+.ajax-progress-throbber {
+  display: none;
+}

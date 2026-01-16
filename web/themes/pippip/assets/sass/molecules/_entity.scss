@@ -1,0 +1,69 @@
+/**
+ * ----------------------
+ * Un.titled
+ * Molecules - Entities
+ * ----------------------
+ */
+
+.m-entity {
+  margin: calc(var(--bump) * 1.5) 0;
+
+  @include media('<sm') {
+    margin: var(--bump) 0;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  &__body,
+  &__text,
+  &__accordion,
+  &__image-text {
+    p a {
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  &__body,
+  &__text,
+  &__accordion {
+    ul {
+      margin-left: 15px;
+
+      li {
+        list-style: none;
+        position: relative;
+        margin-bottom: 10px;
+
+        &::before {
+          content: '';
+          border-radius: 50%;
+          height: 7px;
+          width: 7px;
+          display: block;
+          position: absolute;
+          left: -15px;
+          top: 6px;
+          background-color: var(--c-primary);
+        }
+      }
+    }
+  }
+
+  @import './entities/body';
+  @import './entities/image';
+  @import './entities/view';
+  @import './entities/quote';
+  @import './entities/accordion';
+  @import './entities/gallery';
+  @import './entities/image-text';
+  @import './entities/downloads';
+  @import './entities/embed';
+}

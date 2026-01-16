@@ -1,0 +1,55 @@
+uuid: a11bfc21-e8f7-4668-9c8e-a0a4e49608dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.extra_content.highlight_panel
+    - field.field.extra_content.highlight_panel.field_copy
+    - field.field.extra_content.highlight_panel.field_cta
+    - field.field.extra_content.highlight_panel.field_display_title
+  module:
+    - link
+    - text
+id: extra_content.highlight_panel.default
+targetEntityType: extra_content
+bundle: highlight_panel
+mode: default
+content:
+  field_copy:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: -3
+    region: content
+  field_cta:
+    type: link
+    label: hidden
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: true
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    weight: -4
+    region: content
+  field_display_title:
+    type: boolean
+    label: hidden
+    settings:
+      format: boolean
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: -3
+    region: content
+  title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -5
+    region: content
+hidden: {  }
