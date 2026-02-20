@@ -1,20 +1,23 @@
 {
-    "compilerOptions": {
-      "jsx": "react",
-      "module": "commonjs",
-      "noImplicitAny": true,
-      "preserveConstEnums": true,
-      "removeComments": true,
-      "sourceMap": true,
-      "target": "es5",
-      "esModuleInterop": true,
-      "allowJs": true,
-      "outDir": "./web/themes/pippip/dist"
-    },
-    "files": ["./web/themes/pippip/assets/types/index.d.ts"],
-    "include": [
-      "./web/themes/pippip/assets/js/**/*.ts",
-      "./web/themes/pippip/assets/js/**/*.tsx",
-      "web/themes/pippip/assets/js/classes/SlickSlider.ts"    ],
-    "exclude": ["node_modules", "./web/themes/pippip/dist", "./*.js"]
-  }
+  "compilerOptions": {
+    "target": "ES2020",          // Modern target — D11 doesn't need ES5
+    "module": "ESNext",          // ESM, not CommonJS
+    "moduleResolution": "bundler", // Vite/esbuild resolution
+    "jsx": "react",
+    "strict": true,
+    "noImplicitAny": true,
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "outDir": "./dist",
+    "skipLibCheck": true         // Avoids noise from third-party types
+  },
+  "files": ["./assets/types/index.d.ts"],
+  "include": [
+    "./assets/js/**/*.ts",
+    "./assets/js/**/*.tsx"
+  ],
+  "exclude": ["node_modules", "./dist"]
+}

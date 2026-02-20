@@ -1,6 +1,7 @@
 # global files used sitewide
 global:
   version: 1.x
+  vite: true  
   css:
     theme:
       dist/css/global.min.css: {}
@@ -12,5 +13,6 @@ global:
 
 emmsg:
   version: 1.x
+  vite: true
   js:
     dist/js/emmsg.min.js: {}
