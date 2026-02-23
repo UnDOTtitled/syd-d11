@@ -5,7 +5,9 @@
  * ----------------------
  */
 
-&__accordion {
+@use '../../helpers/mixins' as *;
+
+.m-entity__accordion {
   .accordion {
     border-bottom: 1px dashed var(--c-primary);
   }

@@ -5,7 +5,9 @@
  * ----------------------
  */
 
-&__image-text {
+@use '../../helpers/media' as *;
+
+.m-entity__image-text {
   display: grid;
   grid-template-columns: 40% 1fr;
   gap: calc(var(--bump) / 1.5);

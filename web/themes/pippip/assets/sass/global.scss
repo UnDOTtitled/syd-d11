@@ -5,73 +5,42 @@
  * ----------------------
  */
 
+@use 'config/fonts';
+@use 'config/vars' as *;
+@use 'grid/reflex';
+@use 'helpers/focus-visible';
+@use 'helpers/font-smoothing';
+@use 'helpers/media' as *;
+@use 'helpers/mixins' as *;
+@use 'helpers/table' as *;
+@use 'helpers/helpers';
+@use 'base/defaults';
+@use 'base/typography';
+@use 'base/drupal8';
+@use 'base/main';
+@use 'base/slick';
+@use 'atoms/grid';
+@use 'atoms/nav-toggle';
+@use 'atoms/buttons';
+@use 'atoms/image-credit';
+@use 'atoms/breadcrumbs';
+@use 'molecules/emmsg';
+@use 'molecules/entity';
+@use 'molecules/forms';
+@use 'molecules/nav';
+@use 'molecules/banner';
+@use 'molecules/linked-logos';
+@use 'molecules/social-links';
+@use 'organisms/header';
+@use 'organisms/footer';
+@use 'organisms/views';
+@use 'organisms/search-results';
+@use 'organisms/sidebar';
+@use 'organisms/teaser';
+
 /**
- * Dependencies
+ * Dependencies (third-party: @import after @use; quietDeps hides their deprecations)
  */
 @import 'baguettebox.js/src/baguetteBox';
 @import 'normalize.scss/normalize.scss';
 // @import 'choices.js/public/assets/styles/choices.min.css';
-
-/**
- * Config
- */
-@import 'config/fonts';
-@import 'config/vars';
-
-/**
- * Grid (reflex-style, modern)
- */
-@import 'grid/reflex';
-
-/**
- * Helpers
- */
-@import 'helpers/focus-visible';
-@import 'helpers/font-smoothing';
-@import 'helpers/media';
-@import 'helpers/mixins';
-@import 'helpers/table';
-@import 'helpers/helpers';
-
-/**
- * Base
- */
-@import 'base/defaults';
-@import 'base/typography';
-@import 'base/drupal8';
-@import 'base/main';
-@import 'base/slick';
-
-/**
-* Atoms
-*/
-@import 'atoms/grid';
-@import 'atoms/nav-toggle';
-@import 'atoms/buttons';
-@import 'atoms/image-credit';
-@import 'atoms/breadcrumbs';
-
-/**
- * Molecules
- */
-@import 'molecules/emmsg';
-@import 'molecules/entity';
-@import 'molecules/forms';
-@import 'molecules/nav';
-@import 'molecules/banner';
-@import 'molecules/linked-logos';
-@import 'molecules/social-links';
-
-/**
- * Organisims
- */
-@import 'organisms/header';
-@import 'organisms/footer';
-@import 'organisms/views';
-@import 'organisms/search-results';
-@import 'organisms/sidebar';
-@import 'organisms/teaser';
-
-/**
- * Templates
- */

@@ -1,5 +1,8 @@
 /* Slider */
 
+@use '../helpers/media' as *;
+@use '../helpers/mixins' as *;
+
 .slick-slider {
     position: relative;
     display: block;

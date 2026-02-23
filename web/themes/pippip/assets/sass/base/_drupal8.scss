@@ -5,6 +5,9 @@
  * ----------------------
  */
 
+@use '../helpers/mixins' as *;
+@use '../helpers/media' as *;
+
 // Pagination
 .pager {
   @include li-reset;

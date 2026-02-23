@@ -5,6 +5,8 @@
  * ----------------------
  */
 
+@use 'media' as *;
+
 // Reset <li> elements
 @mixin li-reset {
   list-style: none;

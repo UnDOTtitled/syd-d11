@@ -69,8 +69,7 @@ export default defineConfig(({ mode }) => ({
       scss: {
         // If you use a global variables/mixins file, add it here
         // additionalData: `@use "assets/sass/_variables" as *;`,
-        // Silence Sass deprecation warnings until theme/packages migrate to @use and modern syntax
-        silenceDeprecation: ['import', 'global-builtin', 'if-function'],
+        // Theme uses @use; only node_modules (baguettebox, normalize) use @import — quietDeps hides their warnings
         quietDeps: true,
       },
     },

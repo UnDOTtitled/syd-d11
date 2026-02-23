@@ -1,5 +1,7 @@
 // helpers
 
+@use 'mixins' as *;
+
 // screen readers
 .screen-readers {
     @include rm-text;

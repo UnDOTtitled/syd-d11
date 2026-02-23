@@ -5,6 +5,17 @@
  * ----------------------
  */
 
+@use '../helpers/media' as *;
+@use './entities/body';
+@use './entities/image';
+@use './entities/view';
+@use './entities/quote';
+@use './entities/accordion';
+@use './entities/gallery';
+@use './entities/image-text';
+@use './entities/downloads';
+@use './entities/embed';
+
 .m-entity {
   margin: calc(var(--bump) * 1.5) 0;
 
@@ -56,14 +67,4 @@
       }
     }
   }
-
-  @import './entities/body';
-  @import './entities/image';
-  @import './entities/view';
-  @import './entities/quote';
-  @import './entities/accordion';
-  @import './entities/gallery';
-  @import './entities/image-text';
-  @import './entities/downloads';
-  @import './entities/embed';
 }

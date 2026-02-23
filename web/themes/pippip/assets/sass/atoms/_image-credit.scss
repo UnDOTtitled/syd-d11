@@ -5,6 +5,8 @@
  * ----------------------
  */
 
+@use '../helpers/media' as *;
+
 .a-image-credit {
   position: absolute;
   bottom: var(--bump);
