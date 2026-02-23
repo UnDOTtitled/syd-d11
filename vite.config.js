@@ -1,9 +1,23 @@
 import { defineConfig } from 'vite'
-import { resolve, extname, relative } from 'path'
+import { resolve, dirname } from 'path'
+import { fileURLToPath } from 'node:url'
 import { glob } from 'glob'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 
-const themeRoot = new URL('.', import.meta.url).pathname
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const themeRoot = resolve(__dirname, 'web/themes/pippip')
+
+/** Log file changes so we can confirm the watcher sees edits (e.g. from WSL/Windows). */
+function watchDebug() {
+  return {
+    name: 'watch-debug',
+    configureServer(server) {
+      server.watcher.on('change', (path) => {
+        console.log('[vite] file changed:', path.replace(themeRoot, '').replace(/^\//, '') || path)
+      })
+    },
+  }
+}
 
 // Discover all JS/TS entry points and SCSS entry points (non-partials)
 const jsEntries = Object.fromEntries(
@@ -16,11 +30,12 @@ const jsEntries = Object.fromEntries(
     ])
 )
 
+// Prefix CSS entry names so they don't overwrite JS entries (e.g. global.ts vs global.scss)
 const cssEntries = Object.fromEntries(
   glob
     .sync('assets/sass/*.scss', { cwd: themeRoot })
     .map(file => [
-      file.replace(/^assets\/sass\//, '').replace(/\.scss$/, ''),
+      'style-' + file.replace(/^assets\/sass\//, '').replace(/\.scss$/, ''),
       resolve(themeRoot, file),
     ])
 )
@@ -37,9 +52,15 @@ export default defineConfig(({ mode }) => ({
     // Needed so Drupal's page can load assets from the Vite dev server
     cors: true,
     hmr: {
-      // Use the DDEV hostname so HMR websocket works
-      host: 'syd-d11.ddev.site',
-      protocol: 'wss',
+      // Use localhost so HMR websocket works when assets are served from localhost:5173
+      host: 'localhost',
+      protocol: 'ws',
+    },
+    // Detect file changes when editing from Windows while Vite runs in WSL
+    watch: {
+      usePolling: true,
+      interval: 300,
+      ignored: ['**/node_modules/**', '**/dist/**'],
     },
   },
 
@@ -72,7 +93,10 @@ export default defineConfig(({ mode }) => ({
         entryFileNames: 'js/[name].js',
         chunkFileNames: 'js/[name].js',
         assetFileNames: assetInfo => {
-          if (assetInfo.name?.endsWith('.css')) return 'css/[name].css'
+          if (assetInfo.name?.endsWith('.css')) {
+            const base = assetInfo.name.replace(/^style-/, '').replace(/\.css$/, '')
+            return `css/${base}.css`
+          }
           if (/\.(woff2?|eot|ttf|otf)$/.test(assetInfo.name ?? '')) return 'font/[name][extname]'
           if (/\.(png|jpe?g|gif|webp|avif)$/.test(assetInfo.name ?? '')) return 'img/[name][extname]'
           if (/\.svg$/.test(assetInfo.name ?? '')) return 'img/[name][extname]'
@@ -92,6 +116,7 @@ export default defineConfig(({ mode }) => ({
   },
 
   plugins: [
+    watchDebug(),
     // Copy fonts and images from assets/ into dist/
     viteStaticCopy({
       targets: [

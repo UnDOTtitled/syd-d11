@@ -1,0 +1,30 @@
+{
+  "assets/js/defaults.ts": {
+    "file": "js/defaults.js",
+    "name": "defaults",
+    "src": "assets/js/defaults.ts",
+    "isEntry": true
+  },
+  "assets/js/emmsg.ts": {
+    "file": "js/emmsg.js",
+    "name": "emmsg",
+    "src": "assets/js/emmsg.ts",
+    "isEntry": true
+  },
+  "assets/js/global.ts": {
+    "file": "js/global.js",
+    "name": "global",
+    "src": "assets/js/global.ts",
+    "isEntry": true
+  },
+  "assets/sass/global.scss": {
+    "file": "css/global.css",
+    "src": "assets/sass/global.scss",
+    "isEntry": true
+  },
+  "assets/sass/print.scss": {
+    "file": "css/print.css",
+    "src": "assets/sass/print.scss",
+    "isEntry": true
+  }
+}

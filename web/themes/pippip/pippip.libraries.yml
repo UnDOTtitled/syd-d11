@@ -4,15 +4,15 @@ global:
   vite: true  
   css:
     theme:
-      dist/css/global.min.css: {}
-      dist/css/print.min.css: { media: print }
+      assets/sass/global.scss: {}
+      assets/sass/print.scss: { media: print }
   js:
     https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?version=4.8.0: { type: external }
-    dist/js/defaults.min.js: {}
-    dist/js/global.min.js: {}
+    assets/js/defaults.ts: {}
+    assets/js/global.ts: {}
 
 emmsg:
   version: 1.x
   vite: true
   js:
-    dist/js/emmsg.min.js: {}
+    assets/js/emmsg.ts: {}
