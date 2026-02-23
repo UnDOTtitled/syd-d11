@@ -9,9 +9,7 @@
  * Dependencies
  */
 @import 'baguettebox.js/src/baguetteBox';
-@import 'include-media/dist/_include-media';
 @import 'normalize.scss/normalize.scss';
-@import 'reflex-grid/scss/reflex.scss';
 // @import 'choices.js/public/assets/styles/choices.min.css';
 
 /**
@@ -21,10 +19,16 @@
 @import 'config/vars';
 
 /**
+ * Grid (reflex-style, modern)
+ */
+@import 'grid/reflex';
+
+/**
  * Helpers
  */
 @import 'helpers/focus-visible';
 @import 'helpers/font-smoothing';
+@import 'helpers/media';
 @import 'helpers/mixins';
 @import 'helpers/table';
 @import 'helpers/helpers';

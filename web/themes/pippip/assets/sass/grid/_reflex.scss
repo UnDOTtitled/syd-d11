@@ -1,0 +1,694 @@
+/**
+ * ----------------------
+ * Reflex-style grid (modern)
+ * ----------------------
+ * Drop-in replacement for reflex-grid. Breakpoints match config/_vars.scss.
+ * Flexbox only; no legacy IE or deprecated Sass.
+ */
+
+@use 'sass:math';
+@use 'sass:map';
+@use 'sass:list';
+
+// ---------------------------------------------------------------------------
+// Variables (match theme breakpoints from config/_vars.scss)
+// ---------------------------------------------------------------------------
+
+$reflex-prefix: '' !default;
+$reflex-columns: 12 !default;
+$reflex-grid-spacing: 15px !default;
+$visibility-helpers: true !default;
+
+$reflex-xs: 576px;
+$reflex-sm: 768px;
+$reflex-md: 992px;
+$reflex-lg: 1200px;
+$reflex-xlg: 1600px;
+
+$reflex-xs-max: $reflex-sm - 1px;
+$reflex-sm-max: $reflex-md - 1px;
+$reflex-md-max: $reflex-lg - 1px;
+$reflex-lg-max: $reflex-xlg - 1px;
+
+$reflex-breakpoints: (
+  xs: $reflex-xs,
+  sm: $reflex-sm,
+  md: $reflex-md,
+  lg: $reflex-lg,
+  xlg: $reflex-xlg,
+);
+
+:root {
+  --reflex-columns: #{$reflex-columns};
+  --reflex-grid-spacing: #{$reflex-grid-spacing};
+  --reflex-xs: #{$reflex-xs};
+  --reflex-sm: #{$reflex-sm};
+  --reflex-md: #{$reflex-md};
+  --reflex-lg: #{$reflex-lg};
+  --reflex-xlg: #{$reflex-xlg};
+  --reflex-xs-max: #{$reflex-xs-max};
+  --reflex-sm-max: #{$reflex-sm-max};
+  --reflex-md-max: #{$reflex-md-max};
+  --reflex-lg-max: #{$reflex-lg-max};
+}
+
+// ---------------------------------------------------------------------------
+// Mixins – grid generation
+// ---------------------------------------------------------------------------
+
+@mixin make-reflex-grid($class) {
+  @include loop-reflex-columns($reflex-columns, $class, width);
+}
+
+@mixin calc-reflex-columns($index, $class, $type) {
+  @if $type == width and $index > 0 {
+    .#{$reflex-prefix}#{$class}#{$index} {
+      width: math.percentage(math.div($index, $reflex-columns));
+    }
+  }
+}
+
+@mixin loop-reflex-columns($index, $class, $type) {
+  @if $index >= 0 {
+    @include calc-reflex-columns($index, $class, $type);
+    @include loop-reflex-columns(($index - 1), $class, $type);
+  }
+}
+
+@mixin setup-auto-cols() {
+  -ms-flex: 1 0 0;
+  -webkit-flex: 1 0 0;
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+// ---------------------------------------------------------------------------
+// Mixins – order & offset
+// ---------------------------------------------------------------------------
+
+@mixin order($order: 0) {
+  -ms-flex-order: $order;
+  -webkit-order: $order;
+  order: $order;
+}
+
+@mixin make-order-helpers() {
+  @include loop-order-helpers($reflex-columns);
+}
+
+@mixin loop-order-helpers($index, $breakpoint: null) {
+  @if $index >= 0 {
+    .#{$reflex-prefix}order#{$breakpoint}-#{$index} {
+      order: $index;
+    }
+    @include loop-order-helpers(($index - 1), $breakpoint);
+  }
+}
+
+@mixin offset($index: 0) {
+  $offset: math.div($index, $reflex-columns);
+  @if $offset != 0 {
+    margin-left: math.percentage($offset);
+  }
+}
+
+@mixin make-offset-helpers() {
+  @include loop-offset-helpers(($reflex-columns - 1));
+}
+
+@mixin loop-offset-helpers($index, $breakpoint: null) {
+  @if $index > 0 and $breakpoint == null {
+    .#{$reflex-prefix}offset#{$breakpoint}-#{$index} {
+      @include offset($index);
+    }
+    @include loop-offset-helpers(($index - 1), $breakpoint);
+  } @else if $index >= 0 and $breakpoint != null {
+    .#{$reflex-prefix}offset#{$breakpoint}-#{$index} {
+      @include offset($index);
+    }
+    @include loop-offset-helpers(($index - 1), $breakpoint);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Breakpoint helpers (for visibility)
+// ---------------------------------------------------------------------------
+
+@function breakpoint-next($name, $breakpoints: $reflex-breakpoints) {
+  $names: map.keys($breakpoints);
+  $n: list.index($names, $name);
+  @if $n != null and $n < list.length($names) {
+    @return list.nth($names, $n + 1);
+  }
+  @return null;
+}
+
+@function breakpoint-min($name, $breakpoints: $reflex-breakpoints) {
+  @return map.get($breakpoints, $name);
+}
+
+@function breakpoint-max($name, $breakpoints: $reflex-breakpoints) {
+  $next: breakpoint-next($name, $breakpoints);
+  @if $next != null {
+    @return breakpoint-min($next, $breakpoints) - 1px;
+  }
+  @return null;
+}
+
+@mixin media-breakpoint-up($name, $breakpoints: $reflex-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-down($name, $breakpoints: $reflex-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-only($name, $breakpoints: $reflex-breakpoints) {
+  @include media-breakpoint-up($name, $breakpoints) {
+    @include media-breakpoint-down($name, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Containers
+// ---------------------------------------------------------------------------
+
+.#{$reflex-prefix}container,
+.#{$reflex-prefix}container-full {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: ($reflex-grid-spacing * 2);
+  padding-left: ($reflex-grid-spacing * 2);
+
+  .#{$reflex-prefix}grid {
+    margin-right: -$reflex-grid-spacing;
+    margin-left: -$reflex-grid-spacing;
+  }
+}
+
+.#{$reflex-prefix}container {
+  @media (min-width: $reflex-xs) {
+    max-width: $reflex-xs;
+  }
+  @media (min-width: $reflex-sm) {
+    max-width: $reflex-sm;
+  }
+  @media (min-width: $reflex-md) {
+    max-width: $reflex-md;
+  }
+  @media (min-width: $reflex-lg) {
+    max-width: $reflex-lg;
+  }
+  @media (min-width: $reflex-xlg) {
+    max-width: $reflex-xlg;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Grid
+// ---------------------------------------------------------------------------
+
+.#{$reflex-prefix}grid {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0 auto;
+  position: relative;
+  list-style-type: none;
+
+  &::before,
+  &::after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Col defaults (same property set as original reflex; flexbox-only, no legacy)
+// ---------------------------------------------------------------------------
+
+[class*='#{$reflex-prefix}col-'] {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  position: relative;
+  width: 100%;
+  vertical-align: top;
+  padding: $reflex-grid-spacing;
+  text-align: left;
+  text-align: start;
+  -moz-text-align-last: left;
+  -moz-text-align-last: start;
+  text-align-last: left;
+  text-align-last: start;
+
+  &::before,
+  &::after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    letter-spacing: normal;
+    word-spacing: normal;
+    white-space: normal;
+  }
+
+  .#{$reflex-prefix}grid {
+    -ms-flex: 1 1 auto;
+    -webkit-flex: 1 1 auto;
+    flex: 1 1 auto;
+    margin: -$reflex-grid-spacing;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Column generation (col-, col-xs-, col-sm-, col-md-, col-lg-, col-xlg-)
+// ---------------------------------------------------------------------------
+
+@include make-reflex-grid(col-);
+
+@media (min-width: $reflex-xs) {
+  @include make-reflex-grid(col-xs-);
+}
+
+@media (min-width: $reflex-sm) {
+  @include make-reflex-grid(col-sm-);
+}
+
+@media (min-width: $reflex-md) {
+  @include make-reflex-grid(col-md-);
+}
+
+@media (min-width: $reflex-lg) {
+  @include make-reflex-grid(col-lg-);
+}
+
+@media (min-width: $reflex-xlg) {
+  @include make-reflex-grid(col-xlg-);
+}
+
+// ---------------------------------------------------------------------------
+// Col auto
+// ---------------------------------------------------------------------------
+
+.#{$reflex-prefix}col-auto {
+  @include setup-auto-cols();
+}
+
+@media (min-width: $reflex-xs) {
+  .#{$reflex-prefix}col-xs-auto {
+    @include setup-auto-cols();
+  }
+}
+
+@media (min-width: $reflex-sm) {
+  .#{$reflex-prefix}col-sm-auto {
+    @include setup-auto-cols();
+  }
+}
+
+@media (min-width: $reflex-md) {
+  .#{$reflex-prefix}col-md-auto {
+    @include setup-auto-cols();
+  }
+}
+
+@media (min-width: $reflex-lg) {
+  .#{$reflex-prefix}col-lg-auto {
+    @include setup-auto-cols();
+  }
+}
+
+@media (min-width: $reflex-xlg) {
+  .#{$reflex-prefix}col-xlg-auto {
+    @include setup-auto-cols();
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Order helpers
+// ---------------------------------------------------------------------------
+
+@include make-order-helpers();
+
+@media (min-width: $reflex-xs) {
+  @include loop-order-helpers($reflex-columns, '-xs');
+}
+
+@media (min-width: $reflex-sm) {
+  @include loop-order-helpers($reflex-columns, '-sm');
+}
+
+@media (min-width: $reflex-md) {
+  @include loop-order-helpers($reflex-columns, '-md');
+}
+
+@media (min-width: $reflex-lg) {
+  @include loop-order-helpers($reflex-columns, '-lg');
+}
+
+@media (min-width: $reflex-xlg) {
+  @include loop-order-helpers($reflex-columns, '-xlg');
+}
+
+// ---------------------------------------------------------------------------
+// Offset helpers
+// ---------------------------------------------------------------------------
+
+@include make-offset-helpers();
+
+@media (min-width: $reflex-xs) {
+  @include loop-offset-helpers(($reflex-columns - 1), '-xs');
+}
+
+@media (min-width: $reflex-sm) {
+  @include loop-offset-helpers(($reflex-columns - 1), '-sm');
+}
+
+@media (min-width: $reflex-md) {
+  @include loop-offset-helpers(($reflex-columns - 1), '-md');
+}
+
+@media (min-width: $reflex-lg) {
+  @include loop-offset-helpers(($reflex-columns - 1), '-lg');
+}
+
+@media (min-width: $reflex-xlg) {
+  @include loop-offset-helpers(($reflex-columns - 1), '-xlg');
+}
+
+// ---------------------------------------------------------------------------
+// Grid modifiers – flex wrap & direction
+// ---------------------------------------------------------------------------
+
+.#{$reflex-prefix}wrap {
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.#{$reflex-prefix}no-wrap {
+  -ms-flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  [class*='#{$reflex-prefix}col-'] {
+    -ms-flex-negative: 1;
+    -webkit-flex-shrink: 1;
+    flex-shrink: 1;
+  }
+}
+
+.#{$reflex-prefix}wrap-reverse {
+  -ms-flex-wrap: wrap-reverse;
+  -webkit-flex-wrap: wrap-reverse;
+  flex-wrap: wrap-reverse;
+}
+
+.#{$reflex-prefix}direction-row {
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+}
+
+.#{$reflex-prefix}direction-row-reverse {
+  -ms-flex-direction: row-reverse;
+  -webkit-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+}
+
+.#{$reflex-prefix}direction-column {
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
+.#{$reflex-prefix}direction-column-reverse {
+  -ms-flex-direction: column-reverse;
+  -webkit-flex-direction: column-reverse;
+  flex-direction: column-reverse;
+}
+
+// ---------------------------------------------------------------------------
+// Align items / align content / align-self (with vendor prefixes + vertical-align)
+// ---------------------------------------------------------------------------
+
+.#{$reflex-prefix}align-start {
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+}
+
+.#{$reflex-prefix}align-end {
+  -ms-flex-align: end;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+  [class*='#{$reflex-prefix}col-'] {
+    vertical-align: bottom;
+  }
+}
+
+.#{$reflex-prefix}align-center {
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  [class*='#{$reflex-prefix}col-'] {
+    vertical-align: middle;
+  }
+}
+
+.#{$reflex-prefix}align-baseline {
+  -ms-flex-align: baseline;
+  -webkit-align-items: baseline;
+  align-items: baseline;
+}
+
+.#{$reflex-prefix}align-content-start {
+  -ms-flex-line-pack: start;
+  -webkit-align-content: flex-start;
+  align-content: flex-start;
+}
+
+.#{$reflex-prefix}align-content-end {
+  -ms-flex-line-pack: end;
+  -webkit-align-content: flex-end;
+  align-content: flex-end;
+  [class*='#{$reflex-prefix}col-'] {
+    vertical-align: bottom;
+  }
+}
+
+.#{$reflex-prefix}align-content-center {
+  -ms-flex-line-pack: center;
+  -webkit-align-content: center;
+  align-content: center;
+}
+
+.#{$reflex-prefix}align-content-space-between {
+  -ms-flex-line-pack: justify;
+  -webkit-align-content: space-between;
+  align-content: space-between;
+}
+
+.#{$reflex-prefix}align-content-space-around {
+  -ms-flex-line-pack: distribute;
+  -webkit-align-content: space-around;
+  align-content: space-around;
+}
+
+.#{$reflex-prefix}align-self-stretch {
+  -ms-flex-item-align: stretch;
+  -webkit-align-self: stretch;
+  align-self: stretch;
+}
+
+.#{$reflex-prefix}align-self-start {
+  -ms-flex-item-align: start;
+  -webkit-align-self: flex-start;
+  align-self: flex-start;
+}
+
+.#{$reflex-prefix}align-self-end {
+  -ms-flex-item-align: end;
+  -webkit-align-self: flex-end;
+  align-self: flex-end;
+  vertical-align: bottom;
+}
+
+.#{$reflex-prefix}align-self-center {
+  -ms-flex-item-align: center;
+  -webkit-align-self: center;
+  align-self: center;
+  vertical-align: middle;
+}
+
+.#{$reflex-prefix}align-self-baseline {
+  -ms-flex-item-align: baseline;
+  -webkit-align-self: baseline;
+  align-self: baseline;
+  vertical-align: baseline;
+}
+
+// ---------------------------------------------------------------------------
+// Justify-content (main axis) (with vendor prefixes)
+// ---------------------------------------------------------------------------
+
+.#{$reflex-prefix}justify-start {
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+}
+
+.#{$reflex-prefix}justify-end {
+  -ms-flex-pack: end;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+}
+
+.#{$reflex-prefix}justify-center {
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.#{$reflex-prefix}justify-space-between {
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+.#{$reflex-prefix}justify-space-around {
+  -ms-flex-pack: distribute;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+}
+
+// ---------------------------------------------------------------------------
+// Cosmetic – grid bleed, col bleed
+// ---------------------------------------------------------------------------
+
+.#{$reflex-prefix}grid-bleed {
+  [class*='#{$reflex-prefix}col-'] {
+    padding: 0;
+  }
+}
+
+.#{$reflex-prefix}col-grid {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+
+  &.#{$reflex-prefix}direction-row {
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+.#{$reflex-prefix}col-bleed {
+  padding: 0;
+}
+
+.#{$reflex-prefix}col-bleed-x {
+  padding: $reflex-grid-spacing 0;
+}
+
+.#{$reflex-prefix}col-bleed-y {
+  padding: 0 $reflex-grid-spacing;
+}
+
+// ---------------------------------------------------------------------------
+// Col-grid contents
+// ---------------------------------------------------------------------------
+
+.#{$reflex-prefix}flex-img {
+  display: block;
+  -ms-flex: 0 0 auto;
+  -webkit-flex: 0 0 auto;
+  flex: 0 0 auto;
+  max-width: 100%;
+  height: auto;
+  width: 100%;
+}
+
+.#{$reflex-prefix}flex-footer {
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: 0;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Responsive visibility helpers
+// ---------------------------------------------------------------------------
+
+@if $visibility-helpers == true {
+  $bps: map.remove($reflex-breakpoints, xlg);
+
+  .#{$reflex-prefix}hidden-xs {
+    @include media-breakpoint-only(xs) {
+      display: none !important;
+    }
+  }
+
+  @each $bp in map.keys($bps) {
+    .#{$reflex-prefix}hidden-#{$bp}-up {
+      @include media-breakpoint-up($bp) {
+        display: none !important;
+      }
+    }
+
+    .#{$reflex-prefix}hidden-#{$bp}-down {
+      @include media-breakpoint-down($bp) {
+        display: none !important;
+      }
+    }
+
+    .#{$reflex-prefix}hidden-#{$bp} {
+      @include media-breakpoint-only($bp) {
+        display: none !important;
+      }
+    }
+  }
+
+  .#{$reflex-prefix}hidden-xlg {
+    @media (min-width: $reflex-xlg) {
+      display: none !important;
+    }
+  }
+}

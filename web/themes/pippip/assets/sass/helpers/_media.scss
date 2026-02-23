@@ -1,0 +1,24 @@
+/**
+ * ----------------------
+ * Un.titled
+ * Helpers - Media (replaces include-media)
+ * ----------------------
+ * Supports: <xs, <sm, >sm, <md, <tablet
+ */
+
+@mixin media($query) {
+  $q: #{$query};
+  @if $q == '<xs' or $q == "<xs" {
+    @media (max-width: 575px) { @content; }
+  } @else if $q == '<sm' or $q == "<sm" {
+    @media (max-width: 767px) { @content; }
+  } @else if $q == '>sm' or $q == ">sm" {
+    @media (min-width: 768px) { @content; }
+  } @else if $q == '<md' or $q == "<md" {
+    @media (max-width: 991px) { @content; }
+  } @else if $q == '<tablet' or $q == "<tablet" {
+    @media (max-width: 991px) { @content; }
+  } @else {
+    @warn "media(): unsupported query '#{$query}'";
+  }
+}
