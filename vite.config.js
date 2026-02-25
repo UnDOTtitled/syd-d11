@@ -7,18 +7,6 @@ import { viteStaticCopy } from 'vite-plugin-static-copy'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const themeRoot = resolve(__dirname, 'web/themes/pippip')
 
-/** Log file changes so we can confirm the watcher sees edits (e.g. from WSL/Windows). */
-function watchDebug() {
-  return {
-    name: 'watch-debug',
-    configureServer(server) {
-      server.watcher.on('change', (path) => {
-        console.log('[vite] file changed:', path.replace(themeRoot, '').replace(/^\//, '') || path)
-      })
-    },
-  }
-}
-
 // Discover all JS/TS entry points and SCSS entry points (non-partials)
 const jsEntries = Object.fromEntries(
   glob
@@ -44,7 +32,7 @@ export default defineConfig(({ mode }) => ({
   // Run the dev server from the theme directory
   root: themeRoot,
 
-  // Vite dev server — DDEV will proxy this
+  // Vite dev server — run via npm run start (outside DDEV)
   server: {
     host: '0.0.0.0',
     port: 5173,
@@ -52,7 +40,6 @@ export default defineConfig(({ mode }) => ({
     // Needed so Drupal's page can load assets from the Vite dev server
     cors: true,
     hmr: {
-      // Use localhost so HMR websocket works when assets are served from localhost:5173
       host: 'localhost',
       protocol: 'ws',
     },
@@ -119,7 +106,6 @@ export default defineConfig(({ mode }) => ({
   },
 
   plugins: [
-    watchDebug(),
     // Copy fonts and images from assets/ into dist/
     viteStaticCopy({
       targets: [

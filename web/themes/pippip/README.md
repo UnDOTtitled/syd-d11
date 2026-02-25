@@ -2,12 +2,12 @@
 
 Contents:
 
-- [About](#About)
+- [About](#about)
 - [Browser support](#browser-support)
 - [Setup](#setup)
-- [Laravel Mix](#laravel-mix)
+- [Frontend build (Vite)](#frontend-build-vite)
+- [Icons](#icons)
 - [CSS](#css)
-- [Included helper classes](#included-helper-classes)
 - [SASS file structure](#sass-file-structure)
 - [Grid](#grid)
 - [JS](#js)
@@ -16,87 +16,72 @@ Contents:
 
 ## About
 
-Pippip is a Drupal 9 base theme, utilising Laravel Mix, Browsersync, Typescript & SASS. Styles and templates naming conventions loosely follows the [Patterlab methodology](https://patternlab.io/).
+Pippip is a Drupal 11 base theme using **Vite**, **TypeScript**, and **SASS**. Naming conventions for styles and templates loosely follow the [Pattern Lab methodology](https://patternlab.io/).
 
-#### Browser support
+## Browser support
 
-- Edge
-- Chrome
-- FF
-- Safari
+- Edge, Chrome, Firefox, Safari (modern versions; see Vite build target in `vite.config.js`).
 
 ## Setup
 
-- Place all provided image assets in `./assets/img`
-- Place all fonts in `./assets/font`
-- From the project's root folder:
+- Place image assets in `./assets/img` and fonts in `./assets/font`.
+- From the **project root** (not inside the theme or DDEV):
   - Run `npm install`
-  - Update `hostname` in `webpack.mix.js` with local site domain
-  - Run `npm start` to start compiling & watching the files
+  - Run `npm run build` for a one-off build, or `npm run watch` to rebuild on file changes.
 
-## Laravel Mix
+## Frontend build (Vite)
 
-Pippip runs [Laravel Mix](https://laravel.com/docs/5.7/mix). Run `npm start` to begin development. _Note: requires npm minumum version 10_
+All frontend commands are run from the **project root**. Drupal serves built assets from the theme’s `dist/` directory.
 
-### Tasks
+| Command | Purpose |
+|--------|---------|
+| `npm run build` | One-off build. Outputs to `web/themes/pippip/dist/` (CSS, JS, fonts, images, manifest). |
+| `npm run watch` | Build on save. Rebuilds when you change files; refresh the browser to see updates. |
+| `npm run preview` | Serve the built `dist/` locally (optional; for quick checks without Drupal). |
 
-1. `npm start` standard task, used for watching files. Spins up an instance of Browser Sync for cross device testing.
-2. `npm run dev` builds all assets and optimises icon svgs.
-3. `npm run production` builds all assets and optimises for production.
+### Verifying the build
 
-### Laravel Mix Glob
-
-Laravel Mix Glob is an extension for Laravel Mix and allows you to use glob patterns for css/js files.
-https://github.com/MohamedLamineAllal/laravel-mix-glob
+1. From project root: `npm install` (if needed), then `npm run build`.
+2. Check that `web/themes/pippip/dist/` contains `css/global.css`, `css/print.css`, `js/defaults.js`, `js/global.js`, `js/emmsg.js`, `.vite/manifest.json`, plus `font/` and `img/`.
+3. Open the site (e.g. `https://syd-d11.ddev.site`). Page should be styled and JS should run.
+4. For development: run `npm run watch`, edit a Sass or TS file and save, then refresh the browser to see changes.
 
 ## Icons
 
-Icons can be imported directly into **.twig** files using `{{ get_icon('icon') }}`.
+Icons can be used in Twig with `{{ get_icon('icon') }}`.
 
 ## CSS
 
-Pippip is [SASS](https://sass-lang.com) based.
+The theme is **SASS**-based. Built CSS is written to `dist/css/` by Vite.
 
-#### Included helper classes
+### Included helper classes
 
-- `.hidden` - forcibly hides element from view & screen readers
+- `.hidden` — hides the element from view and screen readers.
 
-#### SASS file structure
+### SASS file structure
 
-- `./assets/sass/global.scss` contains all imports to generate single `dist/css/style.css`
-- `./config/*` contains global variables
-- `./helpers/*` contains animations, breakpoints & global mixins
-- `./base/*` contains D8 specific, global and typography stylesheets
-- `./templates/*` contains template level stylesheets (e.g. CT level)
-- `./organisms/*` contains organism level stylesheets (e.g. header, footer)
-- `./molecules/*` contains molecule level stylesheets (e.g. entities, nav)
-- `./atoms/*` contains atom level stylesheets (e.g. buttons)
+- **Entry files:** Top-level files in `assets/sass/` (e.g. `global.scss`, `print.scss`) are built as separate CSS files in `dist/css/` (e.g. `global.css`, `print.css`). `global.scss` is the main stylesheet and imports the rest.
+- **Folders:** `config/` (variables, fonts), `helpers/` (mixins, breakpoints, etc.), `base/` (defaults, typography, Drupal), `templates/`, `organisms/`, `molecules/`, `atoms/`, `grid/` — all used via imports from the entry files.
 
-#### Grid
+### Grid
 
-Pippip utilises [Reflex grid](http://reflexgrid.com/docs/) for grid layouts. Reflex grid is a lightweight flexbox based mobile-first grid system.
-
-See [documentation](http://reflexgrid.com/docs/) for details & usage.
+[Reflex grid](http://reflexgrid.com/docs/) is used for layout (flexbox-based, mobile-first). See its docs for usage.
 
 ## JS
 
-Pippip is Typescript based by default, and gets converted to ES5 on compile for better browser support.
+The theme uses **TypeScript**. Vite compiles it for modern browsers (see `vite.config.js` build target). Source lives in `assets/js/`; built files go to `dist/js/`.
 
-#### Included JS files
+### Included JS files
 
-- `assets/js/defaults.ts` contains all the default plugins & global functions
-- `assets/js/global.ts` is a blank file for global project specific JS
-- `assets/js/emmsg.ts` contains emergency message JS
+- `assets/js/defaults.ts` — default plugins and global behaviour.
+- `assets/js/global.ts` — project-specific global JS (minimal by default).
+- `assets/js/emmsg.ts` — emergency message behaviour.
 
-#### Included plugins
+### Included plugins
 
-Usage notes for each plugin can be found in `assets/js/defaults.js`
+Usage details are in `assets/js/defaults.ts` (and the built `defaults.js`).
 
-- [BaugetteBox](https://www.npmjs.com/package/baguettebox.js)
-  - Image lightbox
-- [LazyLoad](https://github.com/verlok/lazyload)
-  - Lazyload images
-- [Van11y accessible accordion](https://github.com/nico3333fr/van11y-accessible-accordion-aria)
-  - Accessible vanilla JS accordion
-- [Zenscroll](https://github.com/zengabor/zenscroll)
-  - Anchor scroll animation plugin
+- [BaguetteBox](https://www.npmjs.com/package/baguettebox.js) — image lightbox
+- [LazyLoad](https://github.com/verlok/lazyload) — lazy-load images
+- [Van11y accessible accordion](https://github.com/nico3333fr/van11y-accessible-accordion-aria) — accessible accordion
+- [Zenscroll](https://github.com/zengabor/zenscroll) — anchor scroll animation
