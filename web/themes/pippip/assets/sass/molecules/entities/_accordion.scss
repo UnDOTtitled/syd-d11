@@ -40,8 +40,9 @@
     margin: 0;
   }
 
-  .js-accordion__panel {
-    display: none;
+  .js-accordion__panel[hidden],
+  .accordion__panel[hidden] {
+    display: none !important;
   }
 
   .accordion__panel {
@@ -52,14 +53,6 @@
     max-height: 100em;
     visibility: visible;
     transition-delay: 0s;
-
-    &[aria-hidden='true'] {
-      display: block;
-      max-height: 0;
-      opacity: 0;
-      visibility: hidden;
-      transition-delay: 0.2s, 0s, 0s;
-    }
 
     p:last-child {
       margin-bottom: var(--bump);

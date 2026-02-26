@@ -3,11 +3,12 @@ import FocusWithin from 'focus-within'
 import zenscroll from 'zenscroll'
 import LazyLoad from 'vanilla-lazyload'
 import toggleDataAttr from './utils/toggleDataAttr'
-import 'van11y-accessible-accordion-aria'
+// import 'van11y-accessible-accordion-aria'
 import baguetteBox from 'baguettebox.js'
 // import ModalFocusTrap from './classes/ModalFocusTrap';
 import YouTubePlayer, { YouTubePlayerOptions } from './classes/YtPlayer';
 import SlickSlider from './classes/SlickSlider'; // Assuming SlickSlider.ts is in the same directory
+import AccessibleAccordion from './classes/AccessibleAccordion';
 
 //import Choices from 'choices.js';
 
@@ -141,6 +142,12 @@ Initiate Slider
 */
 const slickSlider = new SlickSlider();
 
+/*
+  Accessible accordion (W3C APG)
+*/
+document.querySelectorAll('.js-accordion').forEach((root) => {
+  new AccessibleAccordion(root as HTMLElement);
+});
 
 
 /* 

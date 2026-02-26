@@ -1,5 +1,9 @@
-<p class="js-accordion__header">{{ content.title }}</p>
-
-<div class="js-accordion__panel">
-	{{ content.field_copy}}
+{% set row_id = eck_entity.id() ?? 'accordion-row-' ~ random() %}
+<h3>
+  <button type="button" class="js-accordion__trigger accordion__header" aria-expanded="false" aria-controls="accordion-panel-{{ row_id }}" id="accordion-trigger-{{ row_id }}">
+    {{ content.title }}
+  </button>
+</h3>
+<div id="accordion-panel-{{ row_id }}" role="region" aria-labelledby="accordion-trigger-{{ row_id }}" class="js-accordion__panel accordion__panel" hidden>
+  {{ content.field_copy }}
 </div>
