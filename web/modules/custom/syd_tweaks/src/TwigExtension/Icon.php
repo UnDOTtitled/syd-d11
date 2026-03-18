@@ -39,7 +39,7 @@ class Icon extends AbstractExtension
             ob_start();
             $return = require($file);
             $data = ob_get_clean();
-            echo $data;
+            return Markup::create($data);
         }
 
         return null;
