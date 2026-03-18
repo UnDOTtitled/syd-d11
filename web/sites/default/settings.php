@@ -16,6 +16,13 @@ $settings['container_yamls'][] = __DIR__ . '/services.yml';
  */
 include __DIR__ . "/settings.pantheon.php";
 
+// Pantheon should always use built Vite assets. Leaving this on the default
+// "auto" mode causes request-time checks against a local dev server URL,
+// which can block PHP workers and lead to 504s.
+if (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
+  $settings['vite']['useDevServer'] = FALSE;
+}
+
 /**
  * Skipping permissions hardening will make scaffolding
  * work better, but will also raise a warning when you
