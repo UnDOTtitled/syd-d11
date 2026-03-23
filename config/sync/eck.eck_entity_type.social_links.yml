@@ -4,6 +4,7 @@ status: true
 dependencies: {  }
 id: social_links
 label: 'Social links'
+description: null
 uid: false
 created: false
 changed: false

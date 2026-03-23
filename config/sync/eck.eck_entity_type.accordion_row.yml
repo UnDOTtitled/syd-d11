@@ -6,6 +6,7 @@ _core:
   default_config_hash: k37gpkxDy6wqPUe12OEb29XA13iWGksY_ZeV65XKY5U
 id: accordion_row
 label: 'Accordion row'
+description: null
 uid: false
 created: false
 changed: false

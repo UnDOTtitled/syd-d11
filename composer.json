@@ -204,7 +204,11 @@
             "drupal/core": "-p2"
         },
         "enable-patching": true,
-        "patches": []
+        "patches": {
+            "drupal/vite": {
+                "Handle missing extension info safely during install-time library discovery": "patches/drupal-vite-handle-missing-extension-info.patch"
+            }
+        }
     },
     "autoload": {
         "classmap": [

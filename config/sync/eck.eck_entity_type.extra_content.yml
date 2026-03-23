@@ -6,6 +6,7 @@ _core:
   default_config_hash: pZoOhs7b-ztZzHywjOcTKaQkik3BVhpnywq56oQBH9s
 id: extra_content
 label: 'Extra content'
+description: null
 uid: false
 created: false
 changed: false
